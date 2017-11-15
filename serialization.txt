@@ -1,0 +1,32 @@
+. All built-in classes like String, arrays, collections 
+  except maps are serializable.
+
+
+1) You need to implement Serializable interface, for serialization.
+
+2) If it is not implemented, NotSerialzableException is 
+   thrown when serialization is done.
+
+3) Static/ transient variables are never serialized.
+
+   Employee is not Serializable empid, name,salary
+   Manager is Serializable - da, hra, pf, incentive, Address address
+
+   Only Manager's attributes will be serialized.
+   Calls constructor for Employee class.
+
+   Make Employee to implement Serializable.
+   Manager becomes Serializable by default.
+
+   Manager HAS-A Address
+   Address is not implementing Serializable interface.
+   address variable will not be serialized.
+   Make Address Serializable.
+
+   Manager will implement Externalizable interface.
+   Implement its two methods:
+	writeObject, readObject
+
+   Implement two methods:
+	writeObject, readObject as private Access Modifier.
+   You are implementing Serializable interface only.
