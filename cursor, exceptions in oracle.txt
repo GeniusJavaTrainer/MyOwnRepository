@@ -1,0 +1,180 @@
+DECLARE
+	v_salary INT;
+BEGIN
+	SELECT salary INTO v_salary FROM emp WHERE empid=6;
+
+	DBMS_OUTPUT.PUT_LINE('Employee Id: 6 has Rs.' || v_salary ||'/- salary.');
+EXCEPTION
+	WHEN NO_DATA_FOUND THEN
+	      DBMS_OUTPUT.PUT_LINE('There is no such employee');
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE insertSalary(p_empid INT, p_name VARCHAR, p_salary FLOAT, p_pf FLOAT, p_emi FLOAT)
+IS
+	v_ded FLOAT;
+	v_salary FLOAT;
+	dedExp EXCEPTION;
+BEGIN
+	v_ded := p_pf + p_emi;
+
+	IF v_ded >= 5000 THEN
+	    RAISE dedExp;
+	ELSE
+	    v_salary := p_salary - v_ded;
+	END IF;
+
+	INSERT INTO emp VALUES(p_empid,p_name, v_salary);
+	DBMS_OUTPUT.PUT_LINE('Record is inserted.');
+EXCEPTION
+	WHEN dedExp THEN
+	      DBMS_OUTPUT.PUT_LINE('Deduction cannot exceed Rs. 5000/-');
+END;
+
+CREATE OR REPLACE PROCEDURE insertSalary(p_empid INT, p_name VARCHAR, p_salary FLOAT, p_pf FLOAT, p_emi FLOAT)
+IS
+	v_ded FLOAT;
+	v_salary FLOAT;
+BEGIN
+	v_ded := p_pf + p_emi;
+
+	IF v_ded >= 5000 THEN
+	    RAISE_APPLICATION_ERROR(-20001,'Hey! Don''t cut my salary');
+	ELSE
+	    v_salary := p_salary - v_ded;
+	END IF;
+
+	INSERT INTO emp VALUES(p_empid,p_name, v_salary);
+	DBMS_OUTPUT.PUT_LINE('Record is inserted.');
+END;
+
+DECLARE
+      CURSOR C1 IS SELECT empid,name,salary FROM emp;
+      v_empid INT;
+      v_name VARCHAR(45);
+      v_salary FLOAT;
+BEGIN
+	OPEN C1;
+
+	LOOP
+		FETCH C1 INTO v_empid, v_name, v_salary;
+		EXIT WHEN c1%NOTFOUND;
+		DBMS_OUTPUT.PUT_LINE('Employee Id: ' || v_empid);
+		DBMS_OUTPUT.PUT_LINE('Name: ' || v_name);
+		DBMS_OUTPUT.PUT_LINE('Salary: ' || v_salary);
+		DBMS_OUTPUT.PUT_LINE('==================================');
+	END LOOP;
+END;
+
+
+DECLARE
+      CURSOR C1 IS SELECT empid,name,salary, designation FROM emp;
+      v_csremp emp%ROWTYPE;
+BEGIN
+	OPEN C1;
+
+	LOOP
+		FETCH C1 INTO v_csremp;
+		EXIT WHEN c1%NOTFOUND;
+		DBMS_OUTPUT.PUT_LINE('Employee Id: ' || v_csremp.empid);
+		DBMS_OUTPUT.PUT_LINE('Name: ' || v_csremp.name);
+		DBMS_OUTPUT.PUT_LINE('Salary: ' || v_csremp.salary);
+		DBMS_OUTPUT.PUT_LINE('Salary: ' || v_csremp.designation);
+		DBMS_OUTPUT.PUT_LINE('==================================');
+	END LOOP;
+END;
+
+
+
+
+CREATE OR REPLACE PROCEDURE findEmp(p_startchar VARCHAR)
+AS
+      CURSOR C1(c_pattern VARCHAR) IS SELECT empid,name,salary FROM emp WHERE name LIKE c_pattern;
+
+      v_empid INT;
+      v_name VARCHAR(45);
+      v_salary FLOAT;
+      v_pattern VARCHAR(10);
+BEGIN
+	v_pattern := p_startchar || '%';
+
+	OPEN C1(v_pattern);
+	LOOP
+		FETCH C1 INTO v_empid, v_name, v_salary;
+		EXIT WHEN c1%NOTFOUND;
+		DBMS_OUTPUT.PUT_LINE('Employee Id: ' || v_empid);
+		DBMS_OUTPUT.PUT_LINE('Name: ' || v_name);
+		DBMS_OUTPUT.PUT_LINE('Salary: ' || v_salary);
+		DBMS_OUTPUT.PUT_LINE('==================================');
+	END LOOP;
+
+	CLOSE C1;
+END findEmp;
+/
+
+DECLARE
+      CURSOR c1 IS SELECT empid,name,salary FROM emp;
+BEGIN
+        FOR empcsr IN (SELECT empid,name,salary FROM emp)
+	LOOP
+		DBMS_OUTPUT.PUT_LINE('Employee Id: ' || empcsr.empid);
+		DBMS_OUTPUT.PUT_LINE('Name: ' || empcsr.name);
+		DBMS_OUTPUT.PUT_LINE('Salary: ' || empcsr.salary);
+		DBMS_OUTPUT.PUT_LINE('==================================');
+	END LOOP;
+END;
+
+DECLARE
+      CURSOR C1 IS SELECT salary FROM emp FOR UPDATE NOWAIT;
+      v_salary FLOAT;
+BEGIN
+	OPEN C1;
+
+	LOOP
+		FETCH C1 INTO v_salary;
+		EXIT WHEN c1%NOTFOUND;
+		
+		IF v_salary < 100000 THEN
+			UPDATE emp SET salary = salary + 10000 WHERE CURRENT OF C1
+		END IF;
+	END LOOP;
+END;
+
+CREATE OR REPLACE PACKAGE ref_cur_demo
+IS
+   TYPE emp_details IS REF CURSOR;
+   PROCEDURE empRef(empsal IN FLOAT, emp_cursor OUT emp_details);
+   PROCEDURE getEmpDetails;
+END;
+
+CREATE OR REPLACE PACKAGE BODY ref_cur_demo
+IS
+	PROCEDURE empRef(empsal IN FLOAT, emp_cursor OUT emp_details)
+	IS
+	    BEGIN
+		OPEN emp_cursor FOR SELECT empid,name,salary FROM emp WHERE salary > empsal;
+	END empRef;
+
+	PROCEDURE getEmpDetails
+	IS
+	    v_salary FLOAT := 100000;
+	    v_empid INT;
+	    v_name VARCHAR(45);
+	   c_empcursor ref_cur_demo.emp_details;
+	BEGIN
+		empRef(v_salary, c_empcursor);
+
+		LOOP
+			FETCH c_empcursor INTO v_empid, v_name, v_salary;
+			EXIT WHEN c_empcursor%NOTFOUND;
+
+			DBMS_OUTPUT.PUT_LINE('Employee Id: ' || v_empid);
+			DBMS_OUTPUT.PUT_LINE('Name: ' || v_name);
+			DBMS_OUTPUT.PUT_LINE('Salary: ' || v_salary);
+			DBMS_OUTPUT.PUT_LINE('==================================');
+		END LOOP;
+
+	CLOSE c_empcursor;
+	END getEmpDetails;
+END ref_cur_demo;
