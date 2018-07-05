@@ -1,0 +1,60 @@
+-- Self Join
+SELECT e.fname 'Employee Name', m.fname 'Manager Name' FROM emp e, emp m WHERE e.mgr_id = m.emp_id
+
+
+-- Cross Join
+CREATE TABLE fd_schemes
+
+(fd_id INT PRIMARY KEY,
+
+ fd_scheme VARCHAR(35),
+
+ min_period FLOAT,
+
+ max_period FLOAT,
+
+ interest FLOAT
+);
+
+
+
+INSERT INTO fd_schemes VALUES(1,'Max Retirement Plan',2,5,8);
+
+
+INSERT INTO fd_schemes VALUES(2,'Annual Income Plan',5,7,9);
+
+
+INSERT INTO fd_schemes VALUES(3,'Quarterly Income Plan',5,7,8.5);
+
+
+
+CREATE TABLE fd_amounts
+(fd_amt FLOAT
+);
+
+
+
+INSERT INTO fd_amounts VALUES(5000);
+
+INSERT INTO fd_amounts VALUES(10000);
+
+INSERT INTO fd_amounts VALUES(15000);
+
+INSERT INTO fd_amounts VALUES(20000);
+
+INSERT INTO fd_amounts VALUES(25000);
+
+INSERT INTO fd_amounts VALUES(30000);
+
+INSERT INTO fd_amounts VALUES(35000);
+
+INSERT INTO fd_amounts VALUES(40000);
+
+INSERT INTO fd_amounts VALUES(45000);
+
+INSERT INTO fd_amounts VALUES(50000);
+
+
+
+SELECT a.fd_amt 'FD Amount', a.fd_amt * (s.interest/100) * (s.min_period) 'Amount with Minimum Period', a.fd_amt * (s.interest/100) * (s.max_period) 'Amount with Maximum Period', s.interest 'Interest Rate'
+FROM fd_amounts a CROSS JOIN fd_schemes s;
