@@ -1,0 +1,160 @@
+CREATE TABLE course_info
+(course_code VARCHAR2(10) PRIMARY KEY,
+course_name VARCHAR2(20),
+course_description VARCHAR2(250),
+course_start_date DATE,
+course_duration NUMBER,
+no_of_participants NUMBER,
+course_type CHAR(3)
+)
+
+CREATE TABLE student_info
+(student_id VARCHAR2(10) PRIMARY KEY,
+first_name VARCHAR2(20),
+last_name VARCHAR2(25),
+address VARCHAR2(150)
+)
+
+CREATE TABLE student_courses
+(
+   student_id VARCHAR2(10) REFERENCES student_info,
+   course_code VARCHAR2(10) REFERENCES course_info
+)
+
+CREATE TABLE course_fees
+(
+   course_code VARCHAR2(10) REFERENCES course_info,
+   base_fees NUMBER,
+   special_fees NUMBER,
+   discount NUMBER
+)
+
+INSERT INTO course_info VALUES('1','DAC','Diploma in Advance Computing is a course bridging gap between college student and Industry Professional', '14-Jul-2014',180,60, 'PGD')
+
+INSERT INTO course_info VALUES('2','DST','Diploma in Software Technology is a course that includes C, C++, CoreJava, Advance Java, Spring','27-Jul-2014',90,40,'PGD')
+
+INSERT INTO course_info VALUES('3','WSF','Workshop in Spring Framework is a 3 day workshop only for hardcore professionals',
+'10-Jul-2014',3,15,'CC')
+
+INSERT INTO course_info VALUES('4','ODW','One day Workshop in dissecting Apache Tomcat 8, only for hardcore professionals',
+'10-Jul-2014',1,10,'CC')
+---------------------------------------------------------------
+DECLARE
+       v_course_day course_info.course_duration%TYPE;
+       v_course_type course_info.course_type%TYPE;
+BEGIN
+        SELECT course_duration INTO v_course_day FROM course_info WHERE course_code='2';
+
+        IF course_day > 10 THEN
+            course_type := 'Long Term Course';
+        END IF;
+        DBMS_OUTPUT.PUT_LINE(course_type);
+END;
+===============================================================
+DECLARE
+       Course_day course_info.course_duration%TYPE;
+       course_type VARCHAR(20);
+BEGIN
+        SELECT course_duration INTO course_day FROM course_info WHERE course_code='2';
+
+        IF course_day > 10 THEN
+            course_type := 'Long Term Course';
+        ELSE
+            course_type := 'Short Term Course';
+        END IF;
+        DBMS_OUTPUT.PUT_LINE(course_type);
+END;
+---------------------------------------------------------------
+DECLARE
+       Course_day course_info.course_duration%TYPE;
+       course_type VARCHAR(20);
+BEGIN
+        SELECT course_duration INTO course_day FROM course_info WHERE course_code='3';
+
+        IF course_day > 50 THEN
+            course_type := 'Long Term Course';
+        ELSIF course_day < 50 AND course_day > 30 THEN
+            course_type := 'Mid Term Course';
+        ELSE
+            course_type := 'Short Term Course';
+        END IF;
+        DBMS_OUTPUT.PUT_LINE(course_type);
+END;
+---------------------------------------------------------------
+DECLARE
+       Course_day course_info.course_duration%TYPE;
+       course_type VARCHAR(20);
+BEGIN
+        SELECT course_duration INTO course_day FROM course_info WHERE course_code='4';
+
+        CASE
+	    WHEN course_day = 1 THEN
+		course_type := 'One day Course';
+	    WHEN course_day > 50 THEN
+		course_type := 'Long Term Course';
+	    WHEN course_day <= 50 AND course_day >= 30 THEN
+		course_type := 'Mid Term Course';
+            ELSE
+		course_type := 'Short Term Course';
+        END CASE;
+        DBMS_OUTPUT.PUT_LINE(course_type);
+END;
+---------------------------------------------------------------
+DECLARE
+       num NUMBER;
+BEGIN
+       num := 1;
+
+       LOOP
+            EXIT WHEN num > 10;
+            DBMS_OUTPUT.PUT_LINE(num);
+            num := num + 1;
+       END LOOP;
+END;
+---------------------------------------------------------------
+DECLARE
+       num NUMBER;
+BEGIN
+       num := 1;
+
+       LOOP
+            EXIT WHEN num > 10;
+            DBMS_OUTPUT.PUT_LINE(num);
+            num := num + 1;
+       END LOOP;
+END;
+---------------------------------------------------------------
+DECLARE
+       num NUMBER;
+BEGIN
+       num := 1;
+
+       FOR num IN 1..10 LOOP
+            DBMS_OUTPUT.PUT_LINE(num);
+       END LOOP;
+END;
+---------------------------------------------------------------
+DECLARE
+       num NUMBER;
+BEGIN
+       num := 1;
+
+       WHILE num <= 10 
+       LOOP
+            DBMS_OUTPUT.PUT_LINE(num);
+            num := num + 1;
+       END LOOP;
+END;
+---------------------------------------------------------------
+<<employee>>
+DECLARE
+        n NUMBER := 10;
+BEGIN
+        <<manager>>
+        DECLARE
+               n NUMBER := 20;
+        BEGIN
+            DBMS_OUTPUT.PUT_LINE(n);
+            DBMS_OUTPUT.PUT_LINE(employee.n);
+        END;
+END;
