@@ -1,0 +1,128 @@
+-- Inner Join ANSI Style
+CREATE TABLE port
+(portid int primary key,
+portname varchar(30)
+);
+
+CREATE TABLE ships
+(shipid int primary key,
+shipname varchar(30),
+homeportid int,
+foreign key(homeportid) references port(portid)
+);
+
+INSERT INTO port VALUES
+(1,'Mumbai'),
+(2,'Vishakhapattanam'),
+(3,'Goa'),
+(4,'Chennai');
+
+INSERT INTO ships VALUES
+(1,'Codd Crystal',null),
+(2,'Codd Elegance',1),
+(3,'Codd Victorious',3),
+(4,'Codd Brazilia',2);
+
+SELECT shipid,shipname,homeportid
+FROM ships INNER JOIN port
+ON homeportid=portid
+ORDER BY shipid;
+
+SELECT shipid,shipname,homeportid
+FROM ships JOIN port
+ON homeportid=portid
+ORDER BY shipid;
+
+SELECT shipid,shipname,homeportid,portname
+FROM ships JOIN port
+ON homeportid=portid
+ORDER BY shipid;
+
+-- Inner Join Theta Style
+
+SELECT shipid,shipname,homeportid
+FROM ships,port WHERE homeportid=portid;
+
+-- Left Outer Join ANSI Style
+
+SELECT shipid, shipname, portname
+FROM ships LEFT OUTER JOIN port
+ON homeportid = portid
+ORDER BY shipid;
+
+SELECT shipid, shipname, portname
+FROM ships LEFT JOIN port
+ON homeportid = portid
+ORDER BY shipid;
+
+-- Left Outer Join Theta Style
+
+SELECT shipid,shipname,homeportid
+FROM ships,port WHERE homeportid=portid(+);
+
+-- Right Outer Join ANSI Style
+
+SELECT shipid, shipname, portname
+FROM ships RIGHT OUTER JOIN port
+ON homeportid = portid
+ORDER BY shipid;
+
+SELECT shipid, shipname, portname
+FROM ships RIGHT JOIN port
+ON homeportid = portid
+ORDER BY shipid;
+
+-- Full Outer Join ANSI Style
+
+SELECT shipid, shipname, portname
+FROM ships FULL JOIN port
+ON homeportid = portid
+ORDER BY shipid;
+
+-- Natural Join
+
+ALTER TABLE ships CHANGE homeportid portid int;
+
+SELECT shipid, shipname, portname
+FROM ships NATURAL JOIN port
+ORDER BY shipid;
+
+-- Joins Using 'USING'
+
+SELECT shipid, shipname, portname
+FROM ships LEFT JOIN port
+USING(portid)
+ORDER BY shipid;
+
+SELECT shipid, shipname, portname
+FROM ships RIGHT JOIN port
+USING(portid)
+ORDER BY shipid;
+
+-- Non-equi Joins
+
+CREATE TABLE scores
+(rollno int primary key,
+ score int
+);
+
+CREATE TABLE grading
+(gradeid int primary key,
+grade varchar(1),
+scoremin int,
+scoremax int);
+
+INSERT INTO scores VALUES
+(1,85),
+(2,65),
+(3,90);
+
+INSERT INTO grading VALUES
+(1,'A',90,100),
+(2,'B',80,89),
+(3,'C',70,79),
+(4,'D',60,69),
+(5,'E',50,59),
+(6,'F',40,49);
+
+SELECT s.rollno, s.score, g.grade FROM scores s JOIN grading g ON s.score BETWEEN g.scoremin AND g.scoremax;
