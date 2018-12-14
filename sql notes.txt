@@ -1,0 +1,25 @@
+There are two ways you can write joins:
+
+1) Theta style: Similar to writing a sub-query.
+
+2) ANSI style: There are keywords provided by ANSI.
+
+MySQL supports ANSI style. Theta style is supported only to certain extent.
+
+In Left Outer Join, all records from left hand side table are guaranteed to come &
+records from right hand side table will be those, which match with Left hand side
+table.
+
+In Right Outer Join, all records from right hand side table are guaranteed to come &
+records from left hand side table will be those, which match with right hand side
+table.
+
+Full outer join is not supported in MySQL. Instead we use UNION ALL.
+
+Natural Join is EquiJoin. That means only matching records will come.
+
+Natural Join is not recommended one as it is very dangerous. Sometimes, we drop some columns from one of the table and now no. of common columns are different & hence the recordset to be chosen is also different. You don't come to know this immediately. It is realized when actual results come to picture.
+
+Self-Join is joining table with itself. There are two copies of same table, with different alias. The foreign key of the table is just another column name for primary key.
+
+In Cross Join, one record of left hand side is joined unconditionally with all records of right hand side. Also, known as Cartesian product.
