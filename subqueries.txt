@@ -1,0 +1,141 @@
+CREATE TABLE customer
+(customerid int primary key,
+customerName varchar(50),
+address varchar(50),
+city varchar(50));
+
+CREATE TABLE payments (
+  customerid int(11) NOT NULL,
+  chequeno varchar(45) NOT NULL,
+  paymentdate date DEFAULT NULL,
+  amount double DEFAULT NULL,
+  PRIMARY KEY (customerid,chequeno)
+);
+
+INSERT INTO customer
+
+(customerid,
+customerName,
+address,
+city)
+
+VALUES
+
+(1,
+'abc',
+'Hinjewadi',
+'Pune'),
+
+(2,
+'pqr',
+'Chandani Chowk',
+'Delhi'),
+
+(3,
+'xyz',
+'Parol Naka',
+'Mumbai')
+;
+
+
+INSERT INTO payments
+
+(customerid,
+chequeno,
+paymentdate,
+amount)
+
+VALUES
+
+(1,
+'109090',
+'2014/04/04',
+50000),
+
+(2,
+'109091',
+'2014/4/3',
+50000),
+
+(3,
+'119090',
+'2014/4/2',
+60000)
+;
+
+CREATE TABLE orders (
+  orderno int(11) NOT NULL,
+  customerno int(11) default NULL,
+  requireddate date default NULL,
+  PRIMARY KEY  (orderno)
+);
+
+INSERT INTO orders
+(orderno,
+customerno,
+requireddate)
+VALUES
+(1, 1, '2013-12-06'),
+(2, 3, '2014-02-07'),
+(3, 2, '2014-05-02');
+
+CREATE TABLE customers (
+  customerno int(11) NOT NULL,
+  name varchar(45) default NULL,
+  city varchar(45) default NULL,
+  creditlimit float default NULL,
+  PRIMARY KEY (customerno)
+);
+
+INSERT INTO customers
+VALUES
+(1,'abc','Chennai',50000),
+(2,'xyz','Chennai',50000),
+(3,'pqr','Chennai',60000),
+(4,'def','Coimbatore',45000),
+(5,'mnp','Coimbatore',50000);
+
+-- Scalar SubQuery
+
+SELECT 
+CUSTOMERID, CHEQUENO, AMOUNT 
+FROM PAYMENTS 
+WHERE AMOUNT > (SELECT AVG(AMOUNT) FROM PAYMENTS)
+
+-- Single Row Subquery
+
+SELECT 
+O.ORDERNO, O.REQUIREDDATE
+FROM ORDERS O
+WHERE O.REQUIREDDATE < 
+(SELECT 
+P.PAYMENTDATE 
+FROM PAYMENTS P
+WHERE CHEQUENO = '109090')
+
+-- Multiple Row Subquery
+
+SELECT o.orderno, o.customerno
+
+FROM orders o
+
+WHERE o.customerno IN
+(SELECT
+p.customerid
+
+FROM payments p
+
+WHERE amount >= 60000
+)
+
+-- Correlated Subquery
+
+SELECT 
+c1.customerno, c1.name, c1.city, c1.creditlimit
+FROM customers c1
+WHERE c1.creditlimit > 
+(SELECT 
+avg(c2.creditlimit) 
+FROM customers c2
+WHERE c2.city = c1.city
+)
