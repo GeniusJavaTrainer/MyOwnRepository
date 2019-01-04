@@ -1,0 +1,98 @@
+What is Maven?
+==============
+
+	Maven is build and deployment tool. Using Maven you can collect required
+resources, entire project can be compiled, tested, executed, deployed in one go.
+
+This was developed in era when there were no IDEs. For Managing different Jars of the
+project, we use Maven.
+
+https://maven.apache.org/download.cgi
+pom.xml ==> Project Object Model ==> What jars are required, till what stage project
+is executed.
+
+Jar files are searched into local repository.
+. Remote repository ==> A computer in your network
+. Central repository ==> A repository provided by maven community.
+- POM contains:
+===============
+	. project dependencies ==> jars to be collected
+	. plugins ==> operations to be performed
+	. goals ==> compilation, testing, build, deploy
+	. build profiles ==> different configurations for different stages of project.
+	. project version
+
+- Sample POM:
+=============
+<project xmlns = "http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+   http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <groupId>com.companyname.project-group</groupId>
+   <artifactId>project</artifactId>
+   <version>1.0</version>
+</project>
+
+--------------- x ------------------------- x --------------------- x -----------------
+. pom
+. archetype ==> readymade template for executions. There are 614 templates readily available
+. groupId ==> starting package name.
+. artifactId ==> Project Name.
+
+mvn archetype:generate -DgroupId=com.me -DartifactId=demo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+java -cp target/demo-1.0-SNAPSHOT.jar com.me.App
+
+mvn archetype:create -DgroupId=com.me -DartifactId=vehicles -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+
+mvn archetype:generate -DgroupId=com.companyname.automobile -DartifactId=trucks -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+
+
+Spring Boot
+
+<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.1.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+	</dependencies>
+
+@SpringBootApplication
+public class Client {
+ 
+	public static void main(String[] args) {
+		SpringApplication.run(Client.class,args);
+		}
+ 
+}
+
+@RestController
+public class HelloController {
+	@RequestMapping("/hello")
+	public String sayHi() {
+		return "Hi";
+	}
+}
+
+
+@SpringBootApplication
+	A convenience annotation that wraps commonly used annotations.
+	Used in place of the following 3  different annotations 
+
+1. @configuration : Instructs that a Spring configuration  class is being used instead of XML to define the components
+
+2. @EnableAutoconfiguraton : is a Spring  boot specific annotation 
+Instructs that the application should auto configure the other frameworks included as dependency with  Spring.
+
+3. @ComponentScan : Scans project for  Spring components annotated with @Service, @Repository, @Component
+
+
+ can responseentity or responsebody identify timeout response?
