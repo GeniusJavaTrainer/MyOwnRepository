@@ -1,0 +1,32 @@
+Controllers are created to the no. of clients.
+
+That increases no. of Servlets to be created.
+
+Those many servlets need to be documented in web.xml.
+
+This increases the complexity of web application.
+
+
+There is theorectical solution:
+===============================
+
+FrontController.
+
+Concept:
+========
+
+
+	There is only one controller that will attend request & then offload
+job of handling request to another class object. This solution can be implemented
+in any programming language like C#. So, this is called a design pattern.
+
+Implementation:
+===============
+
+. Struts & Spring implement this design patten i.e. Front Controller.
+
+. In Struts, request is attended by Filter & not Servlet. This is against MVC
+  architecture, which assumes that role of Controller is to be played by Servlet.
+
+. In Spring, it is perfectly implemented as Spring provides one Servlet i.e.
+  DispatcherServlet that will locate another Controller.
