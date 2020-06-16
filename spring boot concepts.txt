@@ -1,0 +1,69 @@
+Spring Boot is an abstraction layer over Spring framework. Spring Boot will internally
+make use of Spring framework & make life of Spring developer more easy.
+
+
+Advantages of Spring Boot:
+==========================
+
+1) No XML configuration required.
+
+2) Annotation based configuration.
+
+3) Has embedded server like Apache Tomcat, jetty etc.
+
+4) Reduces boiler plate coding as it supports Java 8.
+
+5) Simplifies testing by allowing Mockito to be integrated with SB.
+
+6) Simplifies application maintenance.
+
+7) Reduces the size of build file as there are no XML configuration files.
+
+
+@SpringBootApplication is replacement for three annotations:
+
+1) @Configuration ==> Marks the class as configuration class.
+
+2) @EnableConfigurations ==> Allows the class to kick start configuring the app.
+			     Otherwise any other class can also do it. But this class
+			     will be doing it. This concept is marked by this anno.
+
+3) @ComponentScan ==> Tells Spring framework from where, classes should be searched.
+
+You require a Spring Boot plug-in for Eclipse.
+
+. When setLenient is set to false, wrong date entry will cause exception (ParseException)
+
+
+What is a logger?
+=================
+
+. Logger is a component that keeps on logging the information. Means that it notes events
+  occuring during application execution & keeps on recording it either on console or
+  file or database.
+
+Different logging levels:
+=========================
+
+TRACE ==> During tracing application like how a message travels through different
+          routers.
+DEBUG ==> During debugging of application, generally testing.
+INFO ==> Application execution is perfectly normal.
+WARN ==> May be application is running scarce of resources.
+ERROR ==> Exception has occured.
+FATAL ==> Application is seriously facing problems & may even crash in few time.
+OFF ==> Application is crashing. Just before that.
+
+. slf4j is a third party logger software.
+
+. Simpler but primitive is Log4j.
+
+. @RunWith(SpringRunner.class) will integrate Spring & JUnit.
+
+. @SpringBootTest(classes= HelloRestController.class) prepares Spring Boot for testing.
+  Marks this class as Test class of Spring Boot, indicates that it is for
+  HelloRestController.class
+
+. @AutoConfigureMockMvc integrates MockMvc with Spring. MockMvc provides mock objects
+  for Server, HttpServletRequest, HttpServletResponse & even classes that you provide.
+  So, going into actual environment is not required.
