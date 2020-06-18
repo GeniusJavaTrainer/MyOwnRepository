@@ -1,0 +1,82 @@
+* A micro service is a web service only, but it is very small or micro.
+
+* A huge or monolithic web service, is big in size. May have multiple responsibilities.
+
+* If such web service fails, it may fail a very big project.
+
+* On the other hand, micro services can be combined with different web services & can
+  form a big service. Even if one micro service fails, it will not fail entire application
+  Some other micro service will take its place & help to keep application going.
+
+
+What is a Discovery Service?
+============================
+
+1) A Discovery Service or a Discovery Server is the one that knows what are different
+   clients that are registered to it so that Service Provider can also get to know
+   where a client is. It is a centralized registry for clients.
+
+2) spring-cloud-starter-eureka-server-1.2.6.RELEASE.jar is additional jar in Maven
+   project.
+
+3) @EnableEurekaClient marks the Spring Boot application as client of Eureka Server.
+
+4) @EnableDiscoveryClient also does same job. But @EnableEurekaClient is exclusive
+   client of Eureka Server whereas @EnableDiscoveryClient is a client which is put
+   in commons space & can be used by other than Eureka Server.
+
+5) Main advantages of zuul:
+
+	- Centralized entry point for many microservices.
+	- Common tasks like authentication, authorization can be offloaded to this.
+
+6) To marks your Spring Boot application as zuul gateway, we use @EnableZuulProxy.
+   It will automatocally register itself with Eureka Server.
+
+7) There are four filters in this server:
+	- pre ==> Comes into picture before presenting request to DispatcherServlet.
+	- route ==> Routes request to appropriate microservice.
+	- post ==> After request has been processed.
+	- error ==> Comes into picture when there is an exception.
+
+8) @SpringBootApplication already contains @Configuration.
+
+========================== x =================== x ================= x =================
+
+Spring Seurity:
+===============
+
+1) jwt ==> JSON Web Tokens. This API returns a token based on some cryptic algorithm to
+	   client & same token should be returned back by client in next request.
+	   Otherwise, it is supposed to be unauthentic user.
+
+2) jwt doesn't require session management used in web application. Hence, preferable.
+
+3) Lightweight. Only a cryptic code travels to & fro the server.
+
+4) Secure.
+
+5) JWT is a standalone API. Can be used in single pc or web application.
+
+
+1) CORS ==> Cross Origin Resource Sharing. Generally, browsers block javascript codes
+	    from unknown origin or domain.
+
+What is Claim?
+==============
+
+* Claim is internally a map that remembers user's role, username & cryptic code related
+  to it.
+
+In your application, you need to set the origins from where you will take request. You
+should also tell, what http methods will be allowed by your application as a request.
+
+* @CrossOrigin(origins = "http://localhost", maxAge = 3600) will allow request from
+  http://localhost.
+
+* http://localhost:8080/user/login, with this url goes User credentials. Gets validated.
+  Builds a cryptic code based on email. Creates an object of type Claim. It makes use of
+  signWith method that allows us to specify an algorithm for encryption & give it a
+  name.
+
+* JwtFilter will check if coming token is valid or not, for given url pattern
