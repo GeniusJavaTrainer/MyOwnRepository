@@ -1,0 +1,48 @@
+What is Lombok?
+===============
+
+	Lombok is a convenience tool for integrating loggers & getting lot of convenient code.
+
+
+Advantage:
+==========
+
+* Easy integration with any kind of logger.
+
+* Reduces boilerplate coding.
+
+* Quantity of code gets reduced.
+
+@Getter ==> Generates getters
+
+@Setter ==> Generates setters
+
+@AllArgsConstructor ==> Provides all parameter constructor
+
+@NoArgsConstructor ==> Provides no parameter constructor
+
+@ToString ==> Generates toString for the class.
+
+@EqualsAndHashCode ==> Generates hashCode & equals for the class.
+
+@Slf4j ==> Integrates Slf4j logger in application.
+
+============== x ========================== x =================== x ===================
+
+1) Download lombok.jar from https://projectlombok.org/download
+
+2) Copy it in your eclipse's installation folder.
+
+3) Modify eclipse.ini to have following setting:
+   -javaagent:lombok.jar
+
+4) To include this dependency in your Maven project:
+
+   <dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.12</version>
+		<scope>provided</scope>
+  </dependency>
+
+5) You need to include dependency in project at classpath, despite first 3 steps.
