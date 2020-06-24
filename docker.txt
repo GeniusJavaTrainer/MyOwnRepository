@@ -1,0 +1,220 @@
+What is Docker?
+===============
+
+	Docker is a container.
+
+Why Docker is required?
+=======================
+
+* Many times it happens that an application executes on a particular computer/OS/platform, but doesn't on a
+  different computer/OS/platform. What is reason behind this? Reason is that a computer/OS/platform may have
+  certain resources, files etc. but other computer/OS/platform doesn't have it. We need a place to execute our
+  application where all required resources are available. So, in short, we need a container that incorporates
+  or contains the required sources to execute that application. You will not execute on particular
+  computer/OS/platform, but in Docker. Docker can be installed on any computer/OS/platform.
+
+* This should not be confused with VM (Virtual Machine). A VM is detached from OS, poses itself as a machine.
+  Whereas a container takes part of your OS & that way all heavyweight OS is not required to execute
+  application.
+
+* You can store your application on Docker cloud/ Docker hub & connect to it when required.
+
+
+Terms & teminologies:
+=====================
+
+1) Image ==> Images are blue prints of application. You need to take images of application into your local
+	     Docker.
+
+2) Container ==> Container will contain application or it will execute application inside it. It will
+		 contain one or more images.
+
+
+
+* Pulling a container into docker:
+  ================================
+
+	docker pull <container-name>
+
+Example: docker pull busybox
+
+
+* Running a docker image:
+  =======================
+
+	docker run <image-name>
+Example: docker run hello-world
+
+* When the image is not available, it will be pulled from Docker cloud & then it is run.
+
+* Listing images in Docker:
+  =========================
+
+	1) docker image ls ==> Lists all images.
+	2) docker image ls -a ==> Same as above, all images.
+	3) docker image ls java ==> Lists all images that contains word java.
+	4) docker images java ==> Lists all images that contains word java.
+	5) docker images java:8 ==> Lists all images that has java 8 version.
+	6) docker images --no-trunc ==> Lists full ID of images.
+	7) docker images --filter "dangling=true" ==> Lists images that are not executing.
+
+
+* Removing image in Docker:
+  =========================
+
+	1) docker rmi <image-name>
+Example: docker rmi ubuntu
+
+	2) docker rmi -f <image-name> ==> Forcefully removes image.
+Example: docker rmi -f ubuntu
+
+
+* Listing containers:
+  ===================
+
+	1) docker container ls ==> Shows all containers list.
+	2) docker ps -f "status=exited" ==> Shows non-running containers.
+
+
+* Detaching the process:
+  ======================
+
+	- Detaching a process is making it run at background. Main benefit of it is that we can check
+	  status of such processes.
+
+	1) docker run -d --name topdemo ubuntu ==> Starts the image for ubuntu in background i.e. detached.
+	2) docker attach topdemo => Brings back background image topdemo to front.
+
+
+* Starting & stopping a container:
+  ================================
+
+	1) Create container ==> docker create fedora
+	2) Start the container ==> docker start -a -i 6d8af538ec5
+				   -a means attach. -i stands for interactive mode. We are using interactive
+				   mode here as fedora is an os & I want to give command and see results.
+				   6d8af538ec5 is ID of image, which you can come to know by 'docker images'
+				   command.
+	3) exit current execution by exit command.
+	4) stop container ==> docker stop 6d8af538ec5
+
+
+* Creating volume in docker:
+  ==========================
+
+	- Creating a volume in docker means storing the image locally & not on cloud.
+
+	1) Create container with volume ==> docker create -v /data --name data ubuntu
+	2) Running container that has volume ==> docker run --rm --volumes-from data ubuntu ls -la /data
+
+
+* Dockerizing a Spring Boot application:
+  ======================================
+
+	1) Download a basic Spring Boot application provided by Spring
+	   git clone https://github.com/spring-guides/gs-spring-boot-docker.git
+
+	2) cd gs-spring-boot-docker/initial
+
+	3) Your Spring Boot application file should look like this:
+
+	package hello;
+
+	import org.springframework.boot.SpringApplication;
+	import org.springframework.boot.autoconfigure.SpringBootApplication;
+	import org.springframework.web.bind.annotation.RequestMapping;
+	import org.springframework.web.bind.annotation.RestController;
+
+	@SpringBootApplication
+	@RestController
+	public class Application {
+
+		@RequestMapping("/")
+		  public String home() {
+		    return "Hello Docker World";
+	          }
+
+		public static void main(String[] args) {
+			SpringApplication.run(Application.class, args);
+		}
+
+	}
+
+	4) Package your Maven based Spring Boot project & immediately run it as follows:
+
+	   mvnw package && java -jar target/gs-spring-boot-docker-0.1.0.jar (Add './' in case not using
+	   Windows).
+
+	   Every Dockerfile's first line must be FROM command
+	5) Create a Dockerfile at the root of your project as follows:
+		FROM openjdk:8-jdk-alpine
+		EXPOSE 8080:8080
+		ARG JAR_FILE=target/*.jar
+		COPY ${JAR_FILE} app.jar
+		ENTRYPOINT ["java","-jar","/app.jar"]
+
+	6) docker build -t springio/gs-spring-boot-docker .
+
+	7) docker run -p 8080:8080 -t springio/gs-spring-boot-docker (This will access local machine copy)
+
+	8) If you are using Windows 7, findout its IP address by docker-machine ip. Then,
+	   http://ipAddress:8080
+	   Otherwise,
+	   http://localhost:8080
+
+* Docker-compose:
+  ===============
+
+  -- As its name suggests, it is going to compose more than one application.
+
+  -- Put Dockerfile at root of your project. It should contain following:
+
+FROM java:8
+FROM maven:alpine
+WORKDIR /app
+COPY . /app
+RUN mvn -v
+RUN mvn clean install -DskipTests
+EXPOSE 8080
+ADD ./target/spring-boot-data-jpa-example-0.0.1-SNAPSHOT.jar spring-boot-data-jpa-example-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","spring-boot-data-jpa-example-0.0.1-SNAPSHOT.jar"]
+
+Please note that the jar file name specified is project specific.
+
+  -- Prepare a docker-compose.yml at root of your project, at the root of your project:
+
+version: '3'
+
+services:
+  mysql-docker-container:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=spring_app_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    volumes:
+      - /data/mysql
+  spring-boot-jpa-app:
+    image: spring-boot-jpa-image
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql-docker-container
+    ports:
+      - 8087:8080
+    volumes:
+      - /data/spring-boot-app
+
+================== x =================== x ====================== x ===================
+
+  -- Open command window at root of your project.
+
+  -- docker-compose build
+
+  -- docker-compose up
+
+  -- start project at localhost:8080 (assuming 8080 port no.). If its your personal
+     laptop/ desktop find out its ip address by 'docker-machine ip'. Put that ip
+     address at place of localhost.
