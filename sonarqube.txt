@@ -1,0 +1,108 @@
+What is Sonarqube?
+==================
+
+	Sonarqube is a static code analyzer.
+
+	static means it is not going to change or go anywhere.
+
+* There is client-server architecture.
+
+* Sonarqube is a server, which is constant & live. As many clients will come & go but
+  server will be always available.
+
+* Code analyzer ==> It is going to check the code in your project for:
+
+	1) Whether the code is following best practices of your programming language:
+	   In Java:
+	   ========
+
+		- The variable names, method & class names must follow best practices.
+
+		- The exception block should not contain parent class Exception
+
+		  try {
+			...
+		  }catch(Exception e) { // not best practice
+			...
+		  }
+
+		- The exception block should not be empty.
+
+		  try {
+			...
+		  }catch(Exception e) {  }
+
+	 2) Code smells:
+	    ============
+		Just like an expert cook can easily find whether cooked item is cooked
+properly or not from its smell, an expert developer can easily find out problem in code
+by just looking at it.
+
+
+* Bloaters
+	- Long Parameter List (around 35 to 40 parameters is a bad method) 
+
+	- Primitive Obsession ==> Taking primitive data types even when objects are
+				  suitable.
+
+	- Long Method/Large Class (Method is containing too much of code. Cognizant's
+	  own standard is 80 lines per method).
+
+* Object-Orientation Abusers
+
+	- Calculating salary of all kind of employees in a single class. There should be
+	  sub classes & their salary should be calculated there.
+
+* Change Preventers
+
+	- Writing code that will require lot of changes e.g. database url, username, password are hardcoded.
+
+* Cyclomatic complexity:
+  ======================
+
+Cyclomatic complexity = E - N + 2*P 
+where,
+  E = number of edges in the flow graph.
+  N = number of nodes in the flow graph.
+  P = number of nodes that have exit points
+
+	This is a major that indicates complexity of developed code.
+
+	Appropriate no. <= 4.
+
+	More complex code is difficult to debug.
+
+* Code coverage:
+  ==============
+
+Whether entire developed code is tested or not. To what percent code testing is covered?
+
+* Downloading & running sonarqube:
+  ================================
+
+	- https://www.sonarqube.org/downloads/
+
+	- Requires jdk 11
+
+	- Put 
+wrapper.java.command=C:/Program Files/Java/jdk-11.0.7/bin/java
+
+ 	  in wrapper.conf in conf folder of installation.
+
+	- Go to windows-x86-64 folder below bin folder below installation folder of 
+          sonarqube.
+
+	- double click StartSonar.bat
+
+	- Open browser and type 'localhost:9000' (default port 9000).
+
+	- Download my maven based project which is at: 
+       https://github.com/GeniusJavaTrainer/CapgRepository/blob/master/sonarqubedemo.zip
+
+	- Unzip & import it as Maven project in Eclipse.
+
+	- Right click on it - Run as - Run configurations
+
+	- In Goal type 'clean install sonar:sonar'
+
+	- Go to the hyper link suggested by end of building project successfully.
