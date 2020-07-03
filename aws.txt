@@ -1,0 +1,260 @@
+Curriculum of AWS:
+==================
+
+AWS:
+====
+
+Fundamentals of AWS:
+===================
+
+Global cloud infrastructure of AWS  (Regions, AZ), Cloud services -- Compute, Storage, Database, Container.
+
+
+CI/CD in AWS:
+=============
+
+Introducing devops (CI/CD) on AWS
+
+
+Deploying an application on AWS:
+================================
+
+Learn how to automate a web application deployment using Services like Elastic Beanstalk. Create environment in AWS containing VPC, ELB, EC2 Instances, Subnets, Security groups …for deploying different web applications.
+
+https://aws.amazon.com/getting-started/hands-on/launch-an-app/
+
+https://www.javacodegeeks.com/2012/05/complete-guide-to-deploy-java-web.html
+
+Install AWS Toolkit plugin for eclipse.
+
+Introduction to Devops -- CI/CD  on cloud on AWS:
+=================================================
+
+Introducing DevOps, CI/CD stack-- Code Commit, Code Build, Code Deploy, Code Pipeline, Code Star.
+
+https://aws.amazon.com/getting-started/tutorials/continuous-deployment-pipeline/
+
+-- creating a role
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html?icmpid=docs_iam_console
+
+CI/CD hands on lab:
+===================
+
+CI/CD with AWS Code services.
+
+
+
+CI/CD with microservices deployed on ECS/EKS:
+=============================================
+
+Setup Codepipeline within the AWS environment that will automate the build & deployment of microservices containers on ECS / EKS. Developers will write / enhance microservices & commit it to the source control repository. They will then watch how the CI/CD is automatically executed without downtime to the existing service                          
+
+TASKS:
+======                                                                                   
+1. Setting up code repository for microservices.
+
+2. Infrastructure automation setup.
+
+3. Infrastructure creation using automation scripts.
+
+4. Use the CI/CD infrastructure & check automated build, deploy of artifacts on the container instances. Eg for ECS, the build should create a container image of  a microservice & push it to the ECR repository, The deploy should deploy the container images on the ECS cluster having a task definition, Service, Target group.
+
+5. The above process should be repeated so that any changes to the source code will result in the containers being automatically updated to reflect the new change.
+
+
+https://github.com/in28minutes/deploy-spring-microservices-to-aws-ecs-fargate
+https://www.youtube.com/watch?v=2oXVYxIPs88
+===================== x ===================== x ==================== x ===============
+
+What is AWS:
+============
+
+	Its full form is Amazon Web Services. It has plenty of Web Services ready 
+distributed all over planet with the help of its data centers.
+
+Advantages:
+===========
+
+1) Many resources easily available across the world.
+
+2) Standardized set of resources.
+
+3) Easy for deploying applications & deliver it to client.
+
+Our course focuses on components that are avaiable in free tier.
+
+Free tier is a membership of 12 months for using certain web services.
+
+
+Terms:
+======
+
+AZ ==> Amazon Zone.
+
+VPC ==> Virtual Private Cloud. Inside this, you create your own cluster, where your
+	all deployments will reside.
+
+Subnet ==> A separate region where data centers exist.
+
+Security Group ==> A set of security provisions.
+
+Role ==> Set of duties.
+
+IAM ==> Identity & Access Management
+
+EC2 ==> Elastic Cloud Compute (EC2)
+
+AMI ==> Amazon Machine Image. Creates an instance of a computer in cloud.
+
+SSH ==> Secure Shell. A CLI using which, you can send aws commands in a secure way.
+
+EBS ==> Elastic Beanstalk, a service that allows you to deploy your web application.
+
+RDS ==> Relational Database Service.
+---------------------------------------------------------------------------------------
+
+How to create a Free Tier:
+==========================
+
+1) Go to url https://aws.amazon.com/free/
+
+2) Follow remaining process.
+
+---------------------------------------------------------------------------------------
+
+* A root user will be always local to some region (AZ, Amazon zones).
+
+* IAM user will be always global.
+
+* You should always use IAM account. Using root account is insecure.
+
+* You must create EC2 instance to deploy anything on aws.
+
+* You need to install SSH for CLI to aws.
+
+---------------------------------------------------------------------------------------
+Installing SSH:
+===============
+
+	Assumption : Windows 7 Home Basic:
+	----------------------------------
+
+	- Go to https://github.com/PowerShell/Win32-OpenSSH/releases/tag/v8.1.0.0p1-Beta
+
+	- Unzip the file under C:\Program Files.
+
+	- Rename downloaded folder as 'OpenSSH'
+
+	- Open PowerShell by clicking on 'Start Menu' & typing 'Powershell', then right
+	  clicking on it & clicking 'Run as Administrator'
+
+	- Type 'cd 'C:\Program Files\OpenSSH'
+
+	- Install both ssh-agent and sshd (the daemon) as follows:
+
+	  * powershell -executionpolicy bypass -file install-sshd.ps1
+
+	- Then set up the ssh host keys that are required by the daemon when it starts:
+
+          .\ssh-keygen.exe -A
+
+	- Configure Firewall:
+	  ===================
+
+	  1) In start menu, type 'Windows Firewall with Advance Security'
+
+	  2) Click on it.
+
+	  3) Click on Inbound Rules.
+
+	  4) Click on New Rule. This opens New Inbound Rule Wizard.
+
+	  5) Click on 'Port-Next'.
+
+	  6) Type 22 in 'Specific local ports' text box, then Next.
+
+	  7) Click on Next.
+
+	  8) Uncheck 'Public' and Next.
+
+	  9) Click on 'Finish'.
+
+	-- Other Setup:
+	   ============
+
+	- To make it start automatically, type following commands in Power Shell:
+	  =======================================================================
+
+	1) Set-Service sshd -StartupType Automatic
+	2) Set-Service ssh-agent -StartupType Automatic
+
+	- Put 'C:\Program Files\OpeSSH' in Path variable.
+
+	- Start ssh & ssh-agent by starting Task Manager, going to Services tab & right
+	  clicking these services & then Start.
+
+========================== x =========================== x ======== x =================
+
+CI/ CD with AWS:
+================
+
+What is meant by CI/ CD?
+========================
+
+CI ==> Continuous Integration. Production level software development is very rapid. 
+       You need to continuously keep on on adding modules & continuously test it. 
+       Every time you cannot spend time to set up environment for installing software,
+       loading code & testing it. So application is deployed on a live server or 
+       repository. As you go on developing the application, you go on integrating it 
+       with existing application. So, the repository is kept in a pipeline. You add
+       through pipeline.
+
+CD ==> Continuous Deployment. You will deploy the module after you tested the integrated
+       part.
+
+AWS CodeCommit repository is a repository similar to github. In fact, it is integrated
+with github. For using this, we need to give rights to IAM user & also need to generate github credentials to enter this repository.
+
+* In existing environment of a PHP application, we are deploying another application.
+
+Steps:
+======
+
+1) Zip your application to be deployed.
+
+2) Create a repository & upload the application.
+
+3) Created a pipeline.
+
+4) In pipeline, we referred to the repository just created. Also, referred to the web
+   application, in whose environment, new application gets deployed.
+
+5) Modify the deployed application.
+
+6) Re-upload it in repository & it should be re-deployed again, automatically.
+
+7) Got re-deployed.
+
+================= x ==================== x ================== x =======================
+
+CI/CD with microservices deployed on ECS:
+=========================================
+
+* Demo micro service applications which are already deployed on Docker:
+
+  https://github.com/in28minutes/deploy-spring-microservices-to-aws-ecs-fargate
+
+  We are going to use one micro service from here.
+
+What is ECS?
+============
+
+ECS is actually new name for EC2. It stands for Elastic Container Service.
+
+For deploying micro-service on ECS, we need to use a service called Fargate, which is specialized version of ECS.
+
+ECS is a cluster of many virtual servers. These servers will contain containers. The container will contain applications (in AWS terms we call it Task). These tasks are executed by services.
+
+
+Initially, a built-in service will be deployed.
+
