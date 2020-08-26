@@ -1,0 +1,183 @@
+What are we going to learn?
+===========================
+
+- OOP basics
+
+- SOLID principles
+  * S - SRP
+  * O - Open-Close
+  * L - Liskov substitution
+  * I - Interface seggregation
+  * D - Dependency Inversion
+
+- OOAD (Object Oriented Analysis & Design)
+  * UML (Unified Modeling Language)
+	- Use Case Diagram
+	- Sequence Diagram
+	- Class Diagram
+	
+  * Star UML (s/w for UML)
+
+
+OOP (Object Oriented Programming):
+==================================
+
+Based on 4 pillars:
+-------------------
+
+1) Abstraction ==> Hiding the complexity & exposing only the required
+		   functionality.
+
+2) Encapsulation ==> Gathering properties & operations of an entity
+		     together.
+
+3) Polymorphism ==> One Name => Many Forms
+		    Acceleration.
+
+4) Inheritance ==> Extending functionality of an existing entity.
+
+	- Reusability ==> Something is already existing. You add
+			  functionality to it. So, design need not be
+			  done from scratch.
+
+			* This saves time.
+			* Less people required to develop application
+			* Less time required to develop application
+			* Saves money
+
+	 So, product becomes competent in market.
+
+	- Modularity ==> Only certain module needs to be developed.
+
+	- Maintainability ==> Application is maintainable because
+			      it is splitted into small modules.
+			      This reduces complexity.
+
+- SOLID principles
+  * S - SRP
+  * O - Open-Close
+  * L - Liskov substitution
+  * I - Interface seggregation
+  * D - Dependency Inversion
+
+S ==> SRP (Single Responsibility Principle). This in turn means that
+      Every component (class) should have single & focused 
+      responsibility. The class will focus on only one task. This is
+      also known as High Cohesiveness.
+
+	For example, Math class in Java focuses on only mathematical calculations.
+
+O ==> Open Close principle. Open for extension & Closed for
+      modification.
+
+class Employee {
+	private int empid;
+	private String name;
+	private float salary;
+}
+
+class ContractEmployee extends Employee {
+	private float perDayCharges;
+}
+
+class TopExecutive extends Employee {
+	private double perks;
+}
+Once, this design is final, it should not be allowed to get modified. If you modify, it means the design is not being done with correct idea. So, it should be closed for modification. The class design should be such that it is open for extension.
+
+
+L ==> Liskov substitution principle. Liskov is the name of professor at MIT, who developed this principle. The principle says that parent type must be able to store object of child type.
+
+public class Employee { //parent class
+	private int empid;
+	private String name;
+	private int basic;
+	private float da;
+	private float hra;
+	private float pf;
+	private float salary;
+
+	public void input() {
+	// Code to input empid & name
+	}
+
+	public void calculateSalary() {
+	// Code to calculate salary based on basic, da, hra, pf
+	}
+}
+
+class ContractEmployee extends Employee { //child class
+	private float perDayCharges;
+	private int noOfDays;
+
+	public void input() {
+	// Code to input empid & name. super.input().
+	// This calls Employee's input method
+	}
+
+	public void calculateSalary() {
+	// Code to calculate salary based on per day rate & noOfDays
+	}
+
+}
+
+
+Employee employee = new Employee();//Parent reference type
+employee.input();//input empid & name
+
+//Set values of basic, da, hra, pf
+employee.calculateSalary();//Calculates Employee object values.
+
+
+employee = new ContractEmployee();//Child in parent reference
+employee.input();//input empid & name of contract employee & other
+		 //other details
+
+//Set values of basic, da, hra, pf
+employee.calculateSalary();//Calculates income of Contract Employee object values.
+
+Main benefit is that using a single variable common behavior between parent & child can be invoked.
+
+Using single variable you can switch objects between parent & all its child types.
+
+I ==> Interface seggregation principle.
+
+If you are using a laptop, it has 3-4 usb ports. In these, you will plug-in/ plug-out devices as per your convenience. Sometimes, a pen drive & SSD. Sometimes, only SSD. Sometimes, pen drive only.
+
+You will plug-in device which is required & plug-out which is not required.
+
+So, lets consider a scenario. A company develops s/w for lodges. There are three kinds of lodges:
+
+1) Give room on rent
+2) Give room on rent + Food Service
+3) Give room on rent + Food Service + Taxi
+
+* Giving room on rent is mandatory. Rest two are optional.
+
+interface calcRoomBill {
+	void calculateRoom();
+}
+
+interface calcFood {
+	void calculateFoodBill();
+}
+
+interface calcTaxi {
+	void calculateTaxiBill();
+}
+
+* Now suppose, a lodge has only rooms & no other services. It will
+  implement calcRoomBill.
+
+* If it has Food Service, it will also implement calcFood, 
+  additionally.
+
+* If it has Taxi, its interface will be added.
+
+* In short, required interfaces are added & not required not added.
+  The entire functionality is seggregated into different 
+  interfaces. They are added or removed as per requirement.
+
+D - Dependency Inversion principle.
+
+   Parent class should not be modified for child type. That means that if you add any new functionality in child type, there should not be any situation that needs to modify parent class. Because it means that parent class design was considered properly.
