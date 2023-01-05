@@ -1,0 +1,1883 @@
+24-08-2022:
+===========
+
+Features of Java:
+=================
+
+* Open source, hence free to download.
+
+* Simple. No pointers included.
+  x = **ptr++;
+  x = *ptr++;
+  x = *(*str+i));
+  Most of the syntaxes are either same as in C/C++ or nearly same as that.
+
+* Network Savvy.
+  You can write a network based application in less time as compared to other languages.
+  Most API is given ready for n/w programming. Network API is given ready-made in Java.
+
+* Secure.
+  A Java program never modifies anything on your computer. That's why Applets (internet
+  based programs) were popular. Also, provides Security Manager to manage security from n/w.
+
+* OOP (Object Oriented Programming) features.
+	- Abstraction
+		Hiding the complexity or complex work of given component & exposing only required
+		part.
+
+	- Encapsulation
+		Binding properties & operations of a component together.
+
+		Properties of a car:
+		====================
+
+			- Color
+			- Max Speed
+			- Brand
+			- mileage
+			- model
+
+		Operations of a car:
+		====================
+			- start
+			- stop
+			- acceleration
+			- Shifting gears
+
+	- Polymorphism
+		One name - Many Forms.
+
+		Acceleration.
+
+	- Inheritance.
+
+		Inheriting/ extending an existing product.
+
+* Functional Programming features.
+
+* Interpreted & Compiled.
+	There might be some code that may repeat again & again. Such code is translated only once,
+	& kept aside. That means it is compiled. Such repeated code is known as Hot Spot. The
+	compiler that does this job is known as HotSpot compiler. Now, all compilers are HotSpot
+	only.
+
+* Architecture Neutral. (You can run your program on any h/w platform)
+
+* Platform Independence.(Same features of language on any s/w platform, like data type size).
+
+============================== x ====================== x =================== x ===========
+
+* JVM ==> Java Virtual Machine. It is a software component that poses itself as a machine. 
+          Contains Execution Engine that executes Java program. JVM has its own programming 
+          language, known as ByteCode.
+
+* JRE ==> Java Runtime Environment ==> JVM + Memory area & Java library where Java program 
+		   gets executed. To simply execute programs & need not develop s/w, you will require
+		   JRE.
+
+* JDK ==> Java Development Kit ==> JRE + utilities like JavaDoc. JavaDoc prepares documen-
+		   tation for your application. Must for s/w development.
+
+08 April 2021:
+==============
+
+
+To create an Eclipse Project:
+=============================
+
+1) Press Ctrl + N.
+
+2) Type Java Project.
+
+3) Type name of the project & press Enter key.
+
+
+To create a Java Class:
+=======================
+
+1) Press Ctrl + N.
+
+2) Type Class & press Enter.
+
+3) Type name of class & press Enter.
+
+
+
+* You can create a program in class only.
+
+* To execute a class (Program), it must have public static void main(String[] args)
+
+* To execute a program in Java, press Ctrl + F11.
+
+* Short cuts in Eclipse:
+  https://www.vogella.com/tutorials/EclipseShortcuts/article.html
+
+* Name of public class should be given to .java file. If not given, it is an error.
+
+* A .java file can have any filename, if no class is declared as public.
+
+* Non-public classes can be executed only by going to their respective folders.
+
+
+
+
+What is a variable?
+===================
+
+1) It is a storage box that stores some value.
+
+2) In computer memory, there are many memory locations, with unique memory address.
+
+3) Variable is a name given to memory address.
+
+   a = 100
+
+4) Variable will require a storage space. It will depend on type of data.
+
+
+27 October 2021:
+================
+
+Rules for naming variables:
+---------------------------
+
+1) Variable name must start with an alphabet between a-z or A-Z, currency symbol or _.
+
+2) Variable name should not contain white spaces (Space, tab & newline character is known as
+   white space).
+
+3) There is no limit on how long can be the variable name.
+
+4) Variable name should not be a Java keyword.
+   Keywords list is available at:    https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
+
+
+Conventions for declaring variables (Best Java Practices):
+----------------------------------------------------------
+
+1) Variable name should not be a single letter name.
+
+2) Variable name should be more than one character long & descriptive.
+
+3) Variable should be immediately defined where declared.
+
+   Default values are:
+   -------------------
+
+   byte, short, int, long = 0
+   boolean = false
+   float = 0.0f;
+   double = 0.0;
+   reference = null;
+   char = \u0000;
+
+4) Wherever there is word change, make the alphabet capital, known as Camel Case.
+   interest_rate not allowed, interestRate
+
+09 April 2021:
+==============
+
+What is typecasting:
+====================
+
+* Temporarily changing data type of some expression/variable into another.
+
+* Result of any mathematical expression is converted to the largest data type in that 
+  expression.
+
+* If the resulting data type is larger than receiving variable's data type, error occurs.
+
+* If receiving variable data type is larger than or equal to mathematical expression in RHS
+  then no need to typecast.
+
+* In case of opposite case, explicit typecasting is required.
+
+* For transition from float to int, there is typecasting required. Vice versa, not required.
+
+
+Bitwise Operators:
+==================
+
+* Operate on individual bits of integer/ character quantity.
+			       AND
+  a = 3			0 0 0 0   0 0 1 1
+  b = 2			0 0 0 0	  0 0 1 0
+			0 0 0 0   0 0 1 0
+
+			       OR
+  a = 3			0 0 0 0   0 0 1 1
+  b = 2			0 0 0 0	  0 0 1 0
+			0 0 0 0   0 0 1 1
+
+			       Ex-OR
+  a = 3			0 0 0 0   0 0 1 1
+  b = 2			0 0 0 0	  0 0 1 0
+			0 0 0 0   0 0 0 1
+
+* Bitwise operators can also be used in condition checking. It will always check all 
+  conditions irrespective of whether they are getting satisfied or not.
+
+============= x ====================== x ====================== x ==================
+
+Condition checking:
+===================
+
+1) Numeric value just referred inside if statement, is not allowed in Java. But you can have
+   boolean variable in that place.
+
+2) If many if statements are given, they are all new conditions & checked even if previous
+   condition is satisfied.
+
+3) If there is if-elseif ladder, it breaks in between when one of the condition gets
+   satisfied.
+
+4) switch statement is used to check for certain values & not conditions.
+
+5) Cases cannot be repeated.
+
+6) default case is optional.
+
+7) If break statement is not given, program control falls down to next case.
+
+8) cases can be in any random order.
+
+9) Values that can be put in switch must be of type either byte, char, int, String, Enum.
+
+   Loops:
+   ------
+
+   1) Top-tested & Bottom-tested.
+
+   2) Infinite & finite.
+
+10) A label is name given to a line, where program control should jump.
+
+
+    Output:
+    =======
+
+    1	1
+    1	2
+    1	3
+    1	4
+    Outside inner loop
+    2	1
+    Outside inner loop
+    3	1
+    3	2
+    3	3
+    3	4
+    Outside inner loop
+
+
+* break statement breaks current loop.
+
+* Labeled break will transfer program control just below statement after label.
+
+  Output after labeled break:
+  ===========================
+
+1)
+    1	1
+    1	2
+    1	3
+    1	4
+    Outside inner loop
+    2	1
+    Outside both the loops
+    Outside block.
+
+2)
+1	1
+1	2
+1	3
+1	4
+
+Outside inner loop
+
+2	1
+Outside block.
+
+=============== x ========================= x ==================== x ===============
+
+* Labeled break can be used without loop.
+
+* Labeled continue has to be used with loop only.
+
+================= x ====================== x ===================== x ======================
+
+Output of continue:
+===================
+
+    1	1
+    1	2
+    1	3
+    1	4
+    Outside inner loop
+    2	1
+    2	3
+    2	4
+    Outside inner loop
+    3	1
+    3	2
+    3	3
+    3	4
+    Outside inner loop
+
+Output of Labeled continue:
+===========================
+
+    1	1
+    1	2
+    1	3
+    1	4
+    Outside inner loop
+    2	1
+    3	1
+    3	2
+    3	3
+    3	4
+    Outside inner loop
+
+================= x =========================== x ================== x ====================
+
+* An array is set of contiguous memory locations, where we can store elements of same data
+  type.
+
+* In for-each loop, array element gets copied into singular variable & then we process it.
+
+  Here, increment to next location & checking for end of array, is taken care by Java 
+  Compiler.
+
+  You cannot increment to more than one location.
+
+  You cannot go in reverse order also.
+================= x =========================== x ================== x ====================
+
+29 October 2021:
+================
+
+* A String is a single character or multiple characters that can be addressed using singular
+  variable.
+
+* If you use a character array, you can easily modify its contents. Sometimes, an inadvertent
+  change may lead to bad consequences.
+
+* In many situations, where we are using more than one character, we don't to modify its
+  contents.
+
+* String come into picture in this scenario.
+
+* Strings are singular variables. You don't need to access it using index, every-time.
+
+* Strings are not modifyable. So, inadvertent changes may not happen, so easily.
+
+---------------------- x ----------------- x --------------------- x ------------------------
+
+Regular Expression:
+===================
+
+* It is an expression that can be applied on either String, StringBuffer or StringBuilder.
+
+* This expression will tell Java what pattern of characters might be present in above kind of
+  objects.
+
+===================== x =================== x ======================= x =====================
+10 April 2021:
+==============
+
+* A double dimensional array is an array of single dimensional arrays.
+
+* Input a double dimensional array of 3x3, & print sum rowwise, columnwise, left diagonal &
+  right diagonal.
+
+---------------------- x ----------------- x --------------------- x ------------------------
+
+Classes & Objects:
+------------------
+
+What is a class?
+----------------
+
+* A class is a blue print of things that you are going to use.
+
+  You can visualize a blue print of a bunglow is a class.
+
+  Design of the car is made first & accordingly they are manufactured.
+
+* OOP ==> Object Oriented Programming
+
+  Has four pillars.
+
+  Abstraction ==> Hiding unnecessary complexity & exposing only required operations. This 
+		  leads to ease of operation & false changes to the operating thing.
+
+  Encapsulation ==> Capsulating the properties & operations of a thing, together.
+  Abstraction & Encapsulation go hand-in-hand.
+
+	Fan:
+		properties:
+		-----------
+			color
+			no. of plates
+			is it having a bulb
+			ceiling/table
+			max. speed.
+		operations:
+		-----------
+			on/off fan
+			increase/decrease speed
+			on/off bulb
+
+  Polymorphism ==> One Name - Many Forms
+		Vehicle:
+			accelerate
+			apply break
+			start/stop vehicle
+			change gear (Optional)
+			changing directions
+
+	int add(int a, int b);
+    float add(float a, float b);
+
+  Inheritance ==> Inheriting already existing design & adding new one.
+
+		FanWithBulb inherits Fan
+
+==================== x ============================== x ============= x ===================
+
+* Job of constructor is to initialize values of an object.
+
+* If no constructor is written by developer, Java gives a default constructor, which is
+  parameterless. It gives default values to your newly born object. They are as follows:
+
+	byte, short, int, long = 0;
+	char = \u0000;
+	float = 0.0f;
+	double = 0.0;
+	boolean = false;
+	reference = null;
+
+* Constructor looks like a function, but it is not.
+
+* Constructor will always have same name as class. This is rule.
+
+* Constructor does not return a value, not even void.
+
+=============== x ===================== x ================= x ===========================
+
+Java memory is divided into 5 memory areas:
+===========================================
+
+1) Java Stacks ==> Local variables
+
+2) Heap ==> Stores objects
+
+3) PC register ==> Stores next instruction to be executed.
+
+4) Method Area ==> Stores functions & static variables of the class
+
+5) Native Stacks ==> Stack of variables, in case Java program is integrated with program
+		     from other programming language.
+
+--------------- x ----------------------------- x ------------------- x --------------------
+
+Access modifiers:
+-----------------
+
+1) default ==> No keyword used for this. The variable/method is accessible to all classes at 
+  	       same folder/package.
+
+2) private ==> The variables/methods are not allowed outside class.
+
+3) public ==> These members are exposed to all classes from anywhere.
+
+4) protected ==> Available in same package & to child types even in other packages.
+----------------- x -------------------------- x ------------------ x -----------------
+
+In Java, functions can be written only in classes. So, they are called methods & not functions.
+
+Encapsulation & Abstraction go hand in hand. While encapsulating, we must abstract unnecessary complexities.
+
+When polymorphism is done within same class, it is called overloading. If done for constructor, it is known as constructor overloading. If done for methods, known as method overloading.
+
+Java's own technical term for property is attribute.
+
+Java's own technical term for function/operation is method.
+
+In OOP philosophy, collection of relevant units is a layer. In Java's terms, smallest unit in an application is a class. So, collection of relevant classes to a single purpose are known as a package, which are internally folders.
+
+* Whenever you name any package, following conventions are followed:
+
+	- All aplhabets in package name must be in lowercase.
+
+	- There should not be any number in package name.
+
+	- While giving name to packages, follow reverse convention of client's web site
+	  followed by actual package name.
+------------------------- x -------------------------- x ---------------------- x -----------
+
+HAS-A relationship is like Container-Part relationship.
+
+Car is a container
+Music System is Part
+
+Car HAS-A Music System
+
+Computer HAS-A HDD
+
+Computer HAS-A RAM
+
+1) Aggregation ==> Lifetime of container is not same as part. Car aggregates Music System.
+
+2) Composition ==> Lifetime of container is same as part. Computer aggregates RAM.
+
+Student HAS-A Address.
+======================= x ======================== x ==================== x ================
+
+12 April 2021
+
+Inheritance:
+============
+
+What is inheritance?
+
+	Extending functionality of an existing unit, is inheritance.
+
+	Fan with Bulb, inherits from Fan
+	Smart mobile inherits simple mobile.
+	BicycleWithGear inherits simple bicycle.
+
+Benefits of inheritance:
+------------------------
+
+1) You don't need to design class from scratch. Some part is already existing. You have to
+   just extend that.
+
+2) Because of above benefit, less work is required.
+
+3) Hence, less people are required to work on application/project.
+
+4) Hence, application development requires less funds to work on.
+
+5) Hence, application is developed in less time with less money spent & becomes competitive.
+
+6) This is known as reusability of existing classes.
+
+
+Inheritance in Java:
+--------------------
+
+1) Inheritance of concrete classes.
+
+2) Inheritance of abstract classes.
+
+3) Inheritance of interfaces.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+Rules regarding constructors of child class:
+============================================
+
+*  First line of constructor of child class must be call to constructor of parent type or
+   constructor of its own class. Otherwise, it is a syntactical error.
+
+*  Variable of parent type can store object reference of child type.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+*  protected access modifier allows access to members in same package & to child types in 
+   any other package.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+* An annotation is an instruction for compiler.
+
+* A method signature is its return type, method name, list of parameters along with its data 
+  type & exception it throws.
+
+* @Override tells Java compiler to check the method signature of the method below annotation
+  if it complies with the method signature of its parent class.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+* Whenever you create any new class, it automatically inherits a class known as Object.
+
+* It has some basic built-in functionality that every class will require. e.g. creating a
+  unique ID for every separate object (hashCode), capability to compare contents of objects
+  of same class (equals), allowing String representation of object of that class (toString).
+
+* The toString() method returns contents of an object in String form.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+What is an abstract class?
+--------------------------
+
+* Dictionary word meaning of word 'abstract', is incomplete.
+
+* An abstract class is an incomplete class. To make it complete, child type adds it own
+  attributes & methods.
+
+* An abstract class may contain methods that are just declared, but not defined. They are
+  defined in child type.
+
+* Abstract class declares some methods. If they are not defined by child, it is an error
+  or even child type must be abstract.
+
+940
+'9' - '0' = 9 * 10 raised to 2 = 900
+'4' - '0' = 4 * 10 raised to 1 = 40
+'0' -'0' = 0 * 10 raised to 0 = 0
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+What is an interface?
+---------------------
+
+* An interface is a 100% abstract class.
+
+* In an abstract class, there might be some method/s defined, but in an interface, no method
+  is defined. This is valid till jdk 1.7.
+
+* If you can't define anything at parent level, all methods will be abstract. Hence, using
+  an interface is unavoidable. e.g. 2D Shape ==> All shapes have perimeter, area. viz.
+  triangle, rectangle, circle, but all have completely different calculation methods.
+
+* Interfaces are also important as they solve Dangerous Diamond Problem. In this, when a
+  class inherits from more than one class & they have common methods, it becomes point of
+  confusion for sub-class, which implementation it should take. So, it is compilation error.
+  Interfaces solve this problem as the methods are empty only.
+
+* Variables in an interface are public static final, by default. This cannot be changed.
+
+* Methods declared in an interface are public & abstract. By default. This cannot be changed.
+
+* An interface is always implemented by class & not extended as it is empty. So, no
+  functionality can be extended.
+
+* Java doesn't promote multiple inheritance of classes because it leads to conflict, which
+  version of method is to be inherited.
+
+* Java promotes multiple inheritance of interfaces. As all methods are empty i.e. abstract,
+  there is no confusion, which version should be taken.
+
+* Interface allows plug-and-play facility.
+
+  If I'm developing software for a lodge:
+
+  1) Room Service ==> Allows rooms on rent.
+  2) Food Service ==> Allowing food in room & hotel.
+  3) Taxi Service ==> Allowing customers taxi service for day & night.
+
+* More than one interface can be inherited by class, but not more than one class can be
+  inherited by one class. This is because Dangerous Diamond problem does not allow to have
+  common method in two classes that are inherited.
+
+* One interface can extend one or more interfaces.
+
+* Because from jdk 1.8 provides default method, even if child type doesn't implement this
+  default method, some implementation is always there.
+
+* The way you can have static methods in class, you can also have it in an interface. This
+  started in jdk 1.8
+-------------------- x ----------------------- x ------------------------- x --------------
+06-11-2021:
+===========
+
+* What is an Exception?
+  =====================
+
+  - An exception is a runtime halting of execution of program, because of some practical 
+    reason. e.g.
+
+   1) You are trying to open a file for reading, but it is a folder.
+
+   2) The file you are trying to open actually does not exist.
+
+   3) You have gone beyond array's or string's index.
+
+   4) You are trying to call function/ method of using a reference variable, but reference
+      variable wasn't allotted an object.
+
+
+  - Whenever there is an exception, it requires to note many things about an exception.
+    e.g.
+	1) Name of exception.
+	2) Description of exception.
+	3) At what line exception happened.
+	4) The calling method of the method where exception happened.
+
+  - Whenever we wish to maintain more than one attribute, we will use a class. So, for
+    different causes of exception, we use different classes & they come under hierarchy
+    of Exceptions.
+
+  - In short, an erroneous situation where your program may halt, is known as exception.
+
+  - Action taken on such situation is known as catching exception/ handling exception.
+
+* There are two kinds of Exception:
+	1) Checked - JVM checks if exception handling code for these exceptions are 
+		     written or not. If not written, it is a compilation error.
+
+	2) Unchecked - JVM does not check if exception handling code for these exceptions are 
+		            written or not. If not written, it is not a compilation error.
+
+* Why JVM doesn't check if exception handling code is written or not?
+
+	1) Most of the time, these are from JVM like ThreadDeathError, StackOverFlowError.
+	   So, there is no point in handling these errors as JVM is already crashed.
+	   These are sub-classes of Error class.
+
+	2) There might be a programming mistake, which when rectified, exception is removed.
+	   These are subclasses of RuntimeException.
+
+* How do we write exception handling code?
+
+	1) Exception prone code is written in try block.
+
+	2) try block is followed by catch block, where possible exception is written &
+	   the exception handling code.
+
+	3) There is no code written between try & catch.
+
+	4) catch block is optionally followed by finally block. It is a code area which
+	   always gets executed irrespective whether exception is thrown or not.
+
+	5) It is generally used to close resources like files, database connections, at the
+	   end of program.
+
+	6) If return statement is written in try block, return statement in finally block
+	   supercedes it.
+
+	7) finally block always gets executed.
+
+* Multi-catch feature is available in Java from jdk 1.7
+
+* catch blocks are written from specific to general sequence.
+
+=========================== x ========================== x =================== x ===========
+
+* When you want to store numbers into object, we use readymade classes for it. They are
+  known as Wrappers.
+
+* For every primitive data type, there is a wrapper. They are as follows:
+
+	int	==> Integer
+	char	==> Character
+	float	==> Float
+	double	==> Double
+	boolean	==> Boolean
+	long	==> Long
+	short	==> Short
+	byte	==> Byte
+	void	==> Void
+
+* What is Integer Constant Pool?
+  ==============================
+
+	- If Integer value is between -128 to +127, it is stored in a separate memory area
+	  known as Integer Constant Pool. If value in Integer Constant Pool is repeated,
+	  it is not created again, but same object reference is given to next ref. var.
+
+
+* There are three factors for Regular Expressions:
+
+  1) The String inside which search operation is to be done.
+
+  2) Pattern class that prepares a pattern for searching.
+
+  3) Matcher class that prepares searching logic inside given string.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+15 April 2021:
+==============
+
+What are different flexible data structures?
+--------------------------------------------
+
+1) Linked List ==> The non-contiguous elements linked with each other by means of memory
+		   address references.
+
+2) Queue ==> Linked List implemented in FIFO manner (First In First Out). You can add 
+	     elements only at end.
+
+	     i) PriorirityQueue ==> The Queue is arranged according certain priority like
+				    designation of an employee or like that.
+
+3) Stack ==> To put things on one another. The data structure is accessed in LIFO manner.
+	     Last In First Out.
+
+
+
+Why use Collections?
+--------------------
+
+1) Arrays have fixed memory locations that may be waste of memory or may run short of memory.
+
+2) Flexible data structures programs require two tasks to be implemented:
+
+   1) Memory allocation & deallocation.
+   2) Program logic (Business Logic).
+
+3) Second point above, leads the program to complexity, creating problems such as memory
+   leak.
+
+4) So, to reduce complexity, we are given readily implemented data structures, known as
+   Collections. They reside in java.util package.
+
+
+What collections are present, in Java?
+--------------------------------------
+
+1) List ==> Allows duplicate elements, implemented in following manners:
+
+		1) ArrayList ==> A self growing/ shrinking data structure. It is like an 
+				 array whose size need not be given.
+
+		2) Linked List ==> A two way linked list.
+
+		3) Vector ==> Same as ArrayList, but slower version. But it is thread-safe.
+			          Only one process can access it at a time.
+
+		4) Queue ==> Linked List used as a Queue.
+
+		5) PriorityQueue ==> Same as 4th with sorted on certain attribute.
+
+		6) BlockingQueue ==> Synchronized version of Queue.
+
+2) Set ==> Allows only unique elements.
+
+3) Map ==> Key Value pairs like rollno-percent, datetime of event - place of event.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+Generics:
+=========
+
+* Using Generics, you can restrict the class to have objects of certain type.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+* ListIterator is sub-class of Iterator. Using Iterator, you can move in forward direction
+  only, whereas using ListIterator you can move in forward & reverse direction also.
+
+
+16 April 2021:
+==============
+
+* Difference between ArrayList & Linked List:
+  -------------------------------------------
+
+  1) ArrayList is a growing/ shrinking array, whereas LinkedList is a doubly linked list.
+
+  2) Everytime you insert an element in an ArrayList, beyond existing capacity, it creates a
+     new object with more capacity, copies previous elements & inserts new one. This is not
+     the case about LinkedList. It simply inserts in between existing nodes. This requires
+     very less time for insertion & deletion. Useful for applications where volatility is
+     high like railway reservations.
+
+  3) LinkedList can be treated as a queue, ArrayList cannot be.
+
+
+* Difference between ArrayList & Vector:
+  --------------------------------------
+
+  1) They are exactly same, but Vector is synchronized & hence slow.
+
+  2) Vector is a legacy collection, present from jdk 1.1, ArrayList was added in jdk 1.5.
+
+  3) At the time of jdk 1.5, Vector was upgraded to ArrayList.
+
+
+* What is a Set?
+  --------------
+
+  A Set is a collection of unique elements.
+
+  There are three kinds of Set:
+  -----------------------------
+
+1) HashSet ==> The elements are arranged in random order. So, sequence of inserting elements
+               is not same as retrieving them.
+
+2) LinkedHashSet ==> The elements are arranged in insertion order. So, sequence of inserting 
+		              elements is same as retrieving them.
+
+3) TreeSet ==> The elements are arranged in sorted order. So, sequence of inserting 
+	           elements is not same as retrieving them, but in ascending order by default.
+
+
+* What is a Map?
+  --------------
+
+  A Map is a collection of unique key-value pair elements.
+
+  1) The key must be unique, values can repeat.
+
+  2) There can be one null key.
+
+  3) If key is repeated with new value, old value gets replaced.
+
+
+  There are three kinds of Map:
+  -----------------------------
+
+1) HashMap ==> The elements are arranged in random order of keys. So, sequence of inserting 
+   	            elements is not same as retrieving them.
+
+2) LinkedHashMap ==> The elements are arranged in insertion order of keys. So, sequence of 
+		     inserting elements is same as retrieving them.
+
+3) TreeMap ==> The elements are arranged in sorted order of keys. So, sequence of inserting 
+	       elements is not same as retrieving them, but in ascending order by default.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+What is a Set?
+	It is an array of Linked Lists.
+
+	It internally uses an algorithm, known as hashing. In this algorithm, a unique value is generated for every object in memory. This unique value may be based on memory location & then some mathematical formula applied on it. Whenever user requests a particular object, program will apply this formula on that object's hash value & this way can immediately jump directly to its memory location. This saves time in retrieving an object.
+
+Use of hashCode() & equals()
+
+* Every object has a unique identifying number, called hashCode. We need to write a method
+  to create a unique identifier for every separate object.
+
+a.equals(a)
+
+a.equals(b)
+
+	a.empid != b.empid
+
+* How a HashSet works?
+  ====================
+
+	- When you insert an object into a set, it applies some formula on that object's
+	  hashcode. It is given by hashCode() method. The formula is applied to choose, the
+	  array element in which object is inserted. For the sake of understanding, we will
+	  consider formula as:
+
+	  hashCode % array length.
+		1%3 = 1
+		2%3 = 2
+		3%3 = 0
+	- The array element, where your object gets inserted, is known as bucket.
+
+	- If hashCode gets repeated, that corresponding object gets inserted in the same
+	  bucket.
+
+	- If there are already some objects existing with same hashcode, it calls equals()
+	  method for every object.
+
+	- If equals() method returns true, object doesn't get inserted.
+
+	- For inserting your own class objects, you must override hashCode() & equals()
+	  methods. If not, it doesn't give any error, but allows duplicates.
+
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+19 April 2021:
+--------------
+
+* To provide a default sorting order of a class (On which attribute you want to sort), then
+  we implement Comparable interface for it.
+
+* It has compareTo() method, to be implemented.
+
+* If we want to provide individual sorting options to user, we implement Comparator interface
+  separately for that attribute.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+Lambda Expressions:
+-------------------
+
+* Lambda expressions follow Functional Programming paradigm rather than OOP.
+
+* In functional programming, not all required inputs are given, but compiler assumes certain
+  things based on logic.
+
+  Example,
+
+		Bob					Mary
+
+
+
+		Sam					Alexa
+(Child of Bob & Mary) (Child of Bob & Mary)
+
+  * Sam & Alexa are siblings, this is conclusion drawn by compiler, as it knows already
+    few things.
+
+* Lambda expressions, reduce lot of code.
+
+* The interface used for Lambda expression must have only one method. Such an interface is
+  known as Functional interface. It is optionally marked with @FunctionalInterface
+  annotation.
+
+* The only method inside functional interface is known as SAM (Single Abstract Method).
+
+* The functional interface can have static methods also & default methods, but there must be
+  only one abstract method.
+
+* There can be Lambda block also. When one expression is not sufficient, you may need 
+  multiple statements. Such block of statements is known as Lambda block.
+
+* There are four types of functional interfaces:
+
+  1) Supplier ==> Doesn't take any parameter, but supplies a value.
+
+  2) Consumer ==> Takes one parameter, but doesn't return back anything.
+
+  3) Predicate ==> Takes one parameter, returns back status, if some condition satifies or 
+                   not.
+
+  4) Function ==> Takes one parameter, returns back another value.
+
+* These kind of functional interfaces are provided by jdk 1.8. They have same name as
+  mentioned above.
+
+* They are in package java.util.function.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+Stream API:
+-----------
+
+What is Stream & why do we use it?
+----------------------------------
+
+* It started in jdk 1.8.
+
+* A stream is a temporary storage of multiple elements from either a collection or array.
+
+* We can apply aggregate methods on such stream.
+
+* Allows lambda expression on stream.
+
+* This leads to efficient coding.
+
+* Also allows parallel stream. That means the stream is exposed to multiple CPUs at a time.
+  This reduces time of processing.
+
+* Allows to map i.e. convert elements from collection/array, in efficient manner.
+
+* Stream gets closed after operations, automatically. This is memory efficient.
+
+* There are two kinds of operations possible on Stream:
+  1) intermediatory ==> Holds temporarily converted data or stream.
+  2) terminal ==> Stream gets closed after this operation.
+
+* Mapping means conversion. It is intermediatory operation.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+23 April 2021:
+==============
+
+* What is a process?
+  ------------------
+
+  Program in Execution
+
+
+* Suppose processes are getting executed in sequence, then what will happen?
+
+1) It will take lot of time to complete all the processes.
+
+2) Full CPU cycle is not utilized.
+
+
+* In Multi processing, CPU switches between multiple processes.
+
+  1) PID, starting memory location, temporary values of process, get copied into CPU.
+
+  2) When switching to other process, it copies above values to another memory location,
+     loads new values. This is known as Context Switch.
+
+  3) Context Switch consumes time, making application run slow.
+
+
+* What is a Thread?
+  =================
+
+  A thread is a sub-process. Process, within process. It is part of main process. CPU
+  doesn't differentiate between two sub-processes. They are just processes for it. But as
+  the sub-processes are within main process, no context switch is required. Hence, speedy
+  application. e.g. Auto-saving & Spell-Checking are sub-processes within MS-Word process.
+
+* So as to save time in Context Switch & Sequential Execution, Multi-Threading is useful.
+
+* Life cycle of Thread:
+  =====================
+
+  1) New ==> Object of thread is instantiated, but not used as Thread.
+
+  2) Runnable ==> A component known as Thread Scheduler, which keeps the newly created
+		  object in an area, known as Thread Pool. Objects in this area, are treated
+		  as Threads. These objects wait for their turn to get executed. They are all
+		  at the mercy of Thread Scheduler. Thread Scheduler decides, which thread to
+		  execute, depending on its algorithm & interaction with OS.
+
+		  Algorithms:
+
+		  1) Time slicing ==> Thread scheduler switches between different threads, giving
+                             each thread, equal time & opportunity.
+
+		  2) Pre-emptive ==> All existing threads are kept aside & new thread is given top 
+                            priority.
+
+		  3) SJF (Shortest Job First) ==> Thread scheduler will check, which thread will 
+ 											  consume least time, that one will be executed first.
+  3) Running ==> Thread starts executing.
+
+  4) Blocked ==> Not doing anything, for a period of time.
+
+  5) Dead ==> Thread has stopped execution.
+
+
+* How can we create Threads:
+  ==========================
+
+All applications executed till this point, are single threaded applications. That single thread is main().
+
+1) Implementing Runnable interface.
+   a) You must put your thread logic in a method known as run() (public void run()).
+   b) Create an instance of that thread. (New state)
+   c) Make it Runnable by calling start() method on it. (Runnable state).
+   d) Thread will start executing at appropriate time. (Running state).
+   e) Thread stops executing.
+
+2) Extending Thread class. This class already implements Runnable interface.
+
+   a) You must put your thread logic in a method known as run() (public void run()).
+   b) Create an instance of that thread. (New state)
+   c) Make it Runnable by calling start() method on it. (Runnable state).
+   d) Thread will start executing at appropriate time. (Running state).
+   e) Thread stops executing.
+
+
+ * Which way of creating thread is more suitable?
+   ==============================================
+
+   By implementing Runnable interface. Why?
+
+1) When you implement Runnable interface, you inherit an empty method that gets implemented.
+   When extend Thread class, all attributes of Thread class get inherited into your current
+   object, making your object heavyweight.
+
+2) When you implement Runnable interface, you can still extend one more class. When you
+   extend Thread class, you can't extend one more class as Java doesn't allow to inherit
+   more than one class at a time.
+
+
+  * Setting priority of a thread:
+    =============================
+
+  * You call setPriority() method.
+
+  * 1 - 10 ==> Higher the number, higher the priority. If no priority is given, it is 5 i.e.
+    normal.
+
+  * 1 - 5 ==> Higher the number, higher the priority. If no priority is given, it is 3 i.e.
+    normal.
+
+  * Setting priority is just a request to thread scheduler, which is not honored many times.
+
+[Hello]
+[World]
+
+[[Hello]
+World]
+
+[Hello]
+[World]
+
+
+ * What is Race Condition?
+   =======================
+
+* Multiple threads try to access service of an object. Because of switching between the 
+  threads, every method execution becomes incomplete & abrupt. No thread gets complete access
+  till end of execution. Every thread tries to finish early. This is race condition.
+
+* Solution is to give complete access to the thread till end of method execution. This is
+  known as synchronization. Here, one thread will acquire lock on object, till end of its
+  execution. Then, other threads will access that method.
+
+[[Hello]
+World]
+
+[Hello]
+[World]
+
+[World]
+[Hello]
+
+ * Rules for synchronization:
+   ==========================
+
+1) When a class's instance (non-static) synchronized method is called, no other thread can
+   call that class's other instance (non-static) synchronized method.
+
+2) But you can call non-static non-synchronized methods of the same class.
+
+3) You can also call static synchronized method of the class.
+
+-------------------- x ----------------------- x ------------------ x --------------
+
+26 April 2021
+-------------
+
+* TDD ==> Test Driven Development.
+
+* In conventional model (Waterfall model), Test conditions are exposed to developer 
+  after code is developed.
+
+* In TDD, it is known at the time of Design phase only.
+
+* Testing framework used in Java, is JUnit.
+
+-------------------- x ----------------------- x ------------------ x --------------
+
+JDBC (Java DataBase Connectivity):
+----------------------------------
+
+* JDBC offers loose coupling between DBMS & Application.
+
+* Executes DBMS queries, functions & procedures in DB area only. This way, reduces n/w
+  traffic.
+
+* Java application recognizes objects only whereas DBMS recognizes tables only. To bridge
+  gap between objects & tables, we need a s/w known as jdbc driver. It translates java 
+  objects & SQL commands given in String form to DB understandable form & converts DB
+  messages to Java understandable form.
+
+* There are four types of driver, in Java:
+
+  1) Type 1, JDBC-ODBC (Open DataBase Connectivity) bridge, useful for testing purpose.
+
+  2) Type 2, Native driver, specific to particular OS. Fastest among all drivers.
+
+  3) Type 3, Network Protocol, Java app communicates to middleware server, middleware server
+     communicates to DB. Completely developed in Java only. Suitable for network based app.
+
+  4) Type 4, Thin Driver, specific to particular DB & hence directly communicates with DB,
+     unlike Type 3 driver.
+
+* Four steps of JDBC application:
+
+  1) Load JDBC driver into memory.
+
+  2) Establish connection with DBMS.
+
+  3) Send SQL statement to DBMS & receive result.
+     DDL, DML commands executeUpdate() is used.
+
+     For SELECT query executeQuery() is used.
+
+  4) Close connection with database.
+
+* Statement is an interface that is implemented by specific Database vendor. We get its 
+  implemented class object & send our SQL statement through it, to database. There, it
+  gets translated to DB specific language then compiled & then executed by SQL Engine.
+
+
+* The contents of Statement object are compiled everytime as they may include different
+  values everytime. If SQL statement inside it, is same, it needs to be compiled everytime.
+
+* This takes considerable time in case SQL statement is repeated.
+
+* To remove this problem, we use PreparedStatement, which is sub-interface of Statement
+  interface.
+
+* In PreparedStatement, SQL statement goes to database, gets compiled there, then onward,
+  only values are sent. The already compiled statement gets integrated with these values.
+  Compilation is not required everytime. This saves time if SQL statement is same again.
+
+* CallableStatement allows Java developer to call stored procedures & stored functions.
+  It is sub-interface of PreparedStatement, which is sub-interface of Statement interface.
+
+* If execute() method returns true if it returns ResultSet or false otherwise.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+12 November 2021
+----------------
+
+* What is Layered Architecture?
+  =============================
+
+	- It is dividing your classes according to layers. A layer is collection of classes
+	  according to purpose. In Java, we call it a package.
+
+	- Because of layered architecture, it increases modularity. Hence, we need to modify
+	  only required classes & not entire code.
+
+	- This increases maintainability.
+
+	- As the code is modular, we can reuse it in any other project.
+
+* A client will consume resources like class. It will ask for certain services.
+
+* Client request goes to server.
+
+* Presentation layer prepares user interface for client & will receive request from client.
+
+* Service layer will contain business logic i.e. the actual logic of application. So, the
+  calculation part of any application will reside here.
+
+* You may need to interact with different database tables. For every table there will be a
+  separate class dedicated to interact with that table only.
+
+* Presentation layer, if directly interacts with database interacting classes, it increases
+  complexity of application. Service layer will resolve this complexity.
+
+* It stands between Presentation layer & database interacting classes. In short, hiding
+  complexity.
+
+* Hence, presentation layer will offload responsibility of calculation to service layer.
+
+* From service layer, responsibility goes to DAO (Data Access Object) layer. This layer
+  provides separate class for separate table. It will contain methods that will interact
+  with Database for different purposes like insert/update/delete. DAO layer is alternatively
+  called as Persistence layer also.
+
+* DTO is Data Transfer Object. Usually, DTO is your entity classes like Employee. Term DTO
+  is alternatively called VO (Value Object), POJO (Plain Old Java Object).
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+27 April 2021
+-------------
+
+What is JPA?
+============
+
+	JPA stands for Java Persistence API. JPA is just a specification. It was developed during EJB (Enterprise Java Beans). EJB dealt with complex enterprise level applications. It promotes the concept of ORM (Object Relational Mapping). JPA is a theoretical specification, which is implemented by many frameworks like Hibernate, IBatis, JDO, Toplink.
+
+ORM ==> Java understands only objects. DBMS understands tables (Tables are known as Relations in DBMS). As DBMS doesn't understand objects & Java doesn't doesn't understand Relations, there needs to be a mapping between the two. As this mapping was not available, we used JDBC.
+
+In JDBC:
+
+	1) You need to load JDBC driver, everytime.
+
+	2) Prepare a query & send it to DBMS. Query has to be given by the developer. Query
+	   might be complex.
+
+	3) Receive result.
+
+	4) Close connection.
+
+Disadvantages:
+==============
+
+1) In above steps, step no. 1 & 4 is a repeated code in many applications. This is called 
+   Boiler-plate code.
+
+2) Step no. 2, can lead to complexity. You may need to write complex query.
+
+3) In case, you are writing insert query for Java classes, who have HAS-A relationship,
+   insert query for both tables has to be sent from Java to DBMS. In short, HAS-A
+   relationship in Java is not automatically connected to primary key & foreign key in
+   DBMS. You have send queries accordingly. This is known as Granularity problem.
+
+4) Inheritance in Java, is also not directly addressed in DBMS.
+
+5) It is more intuitive for a Java developer to call methods, rather than sending SQL
+   statements.
+
+
+Requirements:
+=============
+
+1) The class name in Java should be mapped as table in DBMS, automatically.
+
+2) The framework should automatically check HAS-A relationship & inheritance (IS-A 
+   relationship) & accordingly insert/update/delete/view records.
+
+3) Complex queries should be generated by framework only.
+
+4) Java developer will call methods, SQL statements to be generated by framework.
+
+
+* All above requirements are specified by JPA (Java Persistence API).
+
+* They are implemented by Hibernate, iBatis, TopLink etc.
+
+
+@Entity ==> Marks class, whose objects will be interacting with DB.
+
+@Table ==> Gives name to the table, in case class name & table name is different.
+
+@Id ==> Marks class attribute as primary key.
+
+@Column ==> Marks class attribute as table column.
+
+In JPA:
+
+	Responsibilities no. 1, Preparing query, 3, 4 are taken care by JPA. So, less code. As there is less code, it is more maintainable. It leads to productivity. You don't need to think of complex queries. It is taken care by JPA.
+
+	JPA gives readymade set of methods that internally generates sql queries. It takes care of specific variant of sql command for that DBMS (Dialect).
+
+	Repeatitive code (Boilerplate code) is avoided in JPA.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+<property name="hibernate.hbm2ddl.auto" value="update"/> creates tables from classes in Java,
+if not existing, if already created, keeps them as it is.
+
+Other values are:
+
+create ==> Always create new tables from classes, even if they are existing. So, it will drop
+	   existing tables.
+
+create-drop ==> Always create new tables from classes, even if they are existing & drop them
+		at the end of session.
+
+Components in JPA:
+------------------
+
+Configuration ==> Reads configuration provided by developer. The configuration contains JDBC
+		  driver name, url, username, password, classes with whom DB is going to
+		  interact. Configuration might be in xml, .properties file or annotations.
+
+EntityManagerFactory ==> Manufactures EntityManagers. EntityManagers interacts with DB.
+			 This object is heavyweight. Created only once in application per DB.
+
+EntityManager ==> Interacts with DB. Is responsible for insert, update, delete like commands.
+		   		    Creates Transaction object that controls a transaction.
+
+Transaction ==> Controls a transaction.
+
+Session ==> With help of EntityManager, interacts with DB.
+
+
+States of Object in Hibernate:
+==============================
+
+1) New/ Transient ==> Object created but not interacting with DB
+
+2) Persistent ==> Interacting with DB.
+
+3) Detached ==> Stopped interaction with DB, but as session is not closed, it may again
+   intreract with DB.
+
+4) Transient ==> DB session is closed. Hence, again in non-interacting mode with DB.
+-------------------- x ----------------------- x ------------------------- x --------------
+
+@Entity ==> Marks a class as persistable class. A class whose objects will be persisted.
+
+@Table ==> Allows to give table name with whom you can map a class. Used optionally as most
+	   of the time class name is put same as table name.
+
+@Id ==> Used to mark a class attribute as primary key of the table.
+
+@GeneratedValue(strategy=GenerationType.AUTO) ==> Allows to specify primary key generation
+						  technique. AUTO means default technique of
+						  that DBMS.
+
+1) Auto Increment ==> You don't need to give primary key. It takes next number as primary key
+		      for every new record inserted (By default, number increment is by 1).
+		      Used in MySQL.
+
+2) SEQUENCE ==> You create an object known as sequence. You use it to give next value of
+		primary key. Start, End, Increment all are specified in Sequence object.
+		Used in Oracle.
+
+3) HILO ==> Generates values based on some intervals of numeric type.
+
+4) @Column ==> Used to specify that below attribute is a table column. It is optional as @Id
+	       automatically maps primary key & all rest attributes are aautomatically 
+	       assumed to be columns of table. Used only when attribute name & column name
+	       are different.
+
+* Persistence Context is the area in memory, from where object goes for persistence. i.e.
+  Getting stored in database.
+
+* Once object is done with database storage, it is removed from persistence context.
+-------------------- x ----------------------- x ------------------------- x --------------
+
+Query ==> Is an interface whose implemented object generates a query for DB.
+
+* JPA recommends JPQL(Java Persistence Query Language) for querying.
+
+* JPQL operates on classes & NOT on tables.
+
+* How many no. of records of one table are connected to how many records of another table, is 
+  known as Cardinality. It is of following types:
+
+	1) One to One ==> One record of one table connected to one record of another table.
+			  e.g. ==> Employee & Address. In Java, Employee HAS-A Address.
+
+	2) One to Many ==>One record of one table connected to many records of another table.
+			  e.g. ==> Department & Employee. In Java, Department HAS-A list of
+				   Employee.
+
+	3) Many to One ==> Reverse of above.
+			  e.g. ==> Department & Employee. In Java, Department HAS-A list of
+				   Employee.
+
+	4) Many to Many ==> Many records of one table connected to many records of another 
+                            table. e.g. ==> Product & Order. In Java, Order HAS-A list of
+				            Items & Item class HAS-A list of Products
+-------------------- x ----------------------- x ------------------------- x --------------
+
+28 April 2021:
+==============
+
+Spring Framework:
+-----------------
+
+	* Why use Spring?
+	  ---------------
+
+	1) In a non-Spring application, developer creates objects by calling constructor/
+	   setter. Disadvantage is that the constructor may be long, complicated (You need
+	   to know sequence of attributes). This leads to less productivity. Even, there
+	   might be long list of setter methods to initialize objects that increases code.
+
+	2) As code increases, it decreases readability & maintainability.
+
+	3) If requirement changes, you will have to modify code again & compile it. This
+	   creates delay in application development.
+
+	4) In Spring, a component known as container keeps required objects ready for
+	   application. You demand it and get it.
+
+	5) Reduction in lot of code that increases readability & maintainability.
+
+	6) Only required modules need to be added/ removed from application. Hence, it is
+	   lightweight.
+
+* Container is an object, created by Spring framework. It analyzes xml files and/or
+  annotations & creates objects that will be injected into the application, when demanded.
+
+* The responsibility of creating objects is Inverted from developer to Container. Hence, this
+  is called Inversion of Control (regarding instantiating objects).
+
+* IoC (Inversion of Control) container is the one which does above job.
+
+* There are two types of IoC containers, in Spring:
+
+	1) BeanFactory ==> Very lightweight, doesn't have much facilities, just provides
+			            objects & suitable for mobile applications. This is an interface.
+
+	2) ApplicationContext ==> Sub-interface of BeanFactory, has many provisions along
+				               with providing objects. Heavyweight. Suitable for memory
+				               intense applications.
+
+	   ClassPathXmlApplicationContext ==> Searches xml at classpath. Any file put under
+					                        src comes under classpath automatically.
+
+	   FilePathApplicationContext ==> Can search xml on any part on disk.
+
+	   WebApplicationContext ==> Suitable for web applications.
+
+* IoC ==> Inversion Of Control. The control of instantiating the objects is inverted from
+	      developer to container. Hence, the container is known as IoC container.
+
+* DI ==> Dependency Injection. Dependency means class in Java. An object of dependency gets
+	     injected into your application.
+
+* If your code starts executing, Spring executes its own code that instantiates & keeps
+  dependency objects ready.
+
+* When you call getBean(), object gets injected into application.
+
+* Dependency Injection can be done in two ways:
+
+  1) Constructor Injection ==> When all data to be initialized is known & fixed, we use
+			                    constructor injection.
+
+  2) Setter Injection ==> Some of the data to be set is known, then you set it through
+			               setters & remaining data you get from user. Syntax of connecting
+			               two beans is known as wiring.
+
+  3) Method Injection ==> Values of attributes are initialized by means of methods, if they
+			               need to be calculated.
+
+-------------------- x ----------------------- x ------------------------- x --------------
+
+29 April 2021:
+==============
+
+* Spring is lightweight because it is divided into many modules. Only required modules need
+  to be imported. Hence, it is lightweight.
+
+* For Data Access, two modules are part of Spring Core:
+
+  1) Spring JDBC ==> Spring manages internally, the connection to DB, Sending & Receiving
+		     SQL statement & its result respectively, closing connection. Abstracts
+		     complexity of JDBC.
+
+  2) Spring ORM ==> Any ORM based framework like Hibernate can be integrated with this
+		    module.
+
+  There is a separate module known as Spring Data that automatically generates CRUD operations for any entity that you specify, on the fly, using JPA internally.
+
+* Any testing framework like JUnit, TestNG, Mockito, JMockit can be integrated with Spring.
+  Classes can be tested individually without actual environment i.e. using a mock environment
+
+* Web MVC allows integration of other MVC frameworks to be integrated with Spring.
+
+* AOP ==> Aspect Oriented Programming. It is a complimentary concept to OOP. In OOP, we
+	  create separate class if functionality is increasing. This leads to huge hierarchy
+	  in classes & to deal with it, it is very difficult. Instead, one class can have
+	  commonly required functionality by all classes, into one class.
+
+* Enterprise Application ==> Spring is a full-fledged Web framework. It has evolved to deal
+			     with all requirements of complex web applications of enterprise
+			     level & any requirement like Cloud.
+
+
+* Scope of Beans:
+  ===============
+
+	Scope of bean means how many instances of same object are available & till what range
+it will be alive.
+
+	1) Singleton ==> Only one instance of object is created per JVM. e.g. Calendar.
+Every calendar object will contain same information. Hence, creating a separate object
+everytime is not recommended. Same object reference is given to many reference variables.
+
+	2) Prototype ==> Everytime new instance of object is created. e.g. many objects that
+			 we create.
+===================== x ======================== x =================== x ===================
+
+18 May 2021:
+============
+
+* Structure of HTML5 document.
+
+	DTD ==> Document Type Definition
+
+	html tag ==> Starting point of HTML document.
+
+	head tag ==> Contain specifications of entire HTML document, related to different
+		     tags & how to show the web page.
+
+	body tag ==> contains actual body of the web page.
+
+	meta tag ==> Non-technical specifications of web page.
+
+* p ==> paragraph
+
+* b ==> bold
+
+* i ==> italics
+
+* u ==> underline
+
+
+* Different methods <form> tag will support:
+  ==========================================
+
+1) POST ==>
+		1) Allows form data to send.
+		2) No limit, how much data can be sent.
+		3) Not idempotent. It means that even if you click twice, it will send data
+		   only once.
+		4) Usually used for inserting records.
+		5) Doesn't show the data sent, on address bar. It doesn't mean that it is
+		   secure method of sending data. You have to use SSL protocol for better
+		   security, with HTTP. So, in short, use HTTPS.
+		6) Slower than GET.
+
+2) GET ==>
+
+		1) Allows to send data & used for hyperlink also.
+		2) Limit of 256KB data to be sent.
+		3) Idempotent.
+		4) Usually used for sending small size data & hyperlinks.
+		5) Shows data sent on address bar.
+		6) Uses cache & hence faster than POST.
+
+===================== x ======================== x =============== x ======================
+
+What is CSS?
+============
+
+* It stands for Cascading Style Sheet. It is used to decorate content of a tag for better
+  presentation like font, font color, background color etc.
+
+* It allows you to separate tag contents from its decoration. e.g. Contents are "Hello", but
+  it may be displayed in pink background. Pink background is decoration.
+
+* There are three ways how css can be implemented:
+	1) Inline ==> Inside tag. Old way. Obsolete & not recommended as everything gets
+		      mixed, contents & decoration.
+
+	2) Internal ==> Inside <style> tag written inside <head> tag. Used for entire doc.
+			Still not recommended as it is specific for that document only.
+
+	3) External ==> Stores specifications in .css file. Highly recommended, used 
+			extensively as applicable for many docs.
+
+===================== x ======================== x =============== x ======================
+
+What is BootStrap?
+==================
+
+* It is a set of css classes that help in decorating the web page easily.
+
+Features:
+---------
+
+* Mobile-First methodology ==> The classes are designed in accordance with RWD (Responsive
+			       Web Design). In RWD, the decorations adjust themselves with
+			       screen size. The display screen size is known as viewport.
+
+* Viewports are divided into 12 columns, known as Grid System, which you can adjust according 
+  to requirement.
+
+* Lot many decorations, easy to use for many situations like success, failure, warning etc.
+
+* Form validations are also supported.
+
+------------------- x --------------------------------- x ---------------- x ---------------
+
+* CDN ==> Content Delivery Network. A standard library available on web. This library is
+	  stored in browser cache. Hence, accessing functions from this library yields faster
+	  results as compared to stored one.
+
+* When more than one class is used, it is separated by space & not comma.
+
+===================== x ======================== x =============== x ======================
+
+24 May 2021:
+============
+
+What is Angular & why it is required?
+-------------------------------------
+
+* Angular is a JS based framework.
+
+* It is OOP based framework.
+
+* It follows MVC architecture (Model - View - Controller), in Angular 1.5 or Angular JS.
+
+* Rather it follows MVVM architecture (Model - View - View - Model), from Angular 2 onward.
+
+  - View is the web page to be displayed.
+
+  - Controller attends request & sends back response.
+
+  - Model is data to be displayed on View.
+
+* Controller will decide what is to be shown in view.
+
+* MVVM leads to two-way binding.
+
+* Angular leads to SPA (Single Page Application).
+
+* For using Angular, we need npm (Node Package Manager).
+
+* For creating a new project:
+  ng new <new-project-name>
+
+  ng new my-first-cg-project
+
+* For starting angular application:
+  - ng serve project-name
+  - ng serve project-name -o (-o opens project in web browser). It will start at 4200.
+  - ng serve project-name -o -p port-number.
+  - --open is also for -o & --port is for -p.
+
+* Angular project is splitted in many components:
+
+  - html page that represents the view.
+  - css file to decorate the view.
+  - class that will process the view. It will change the data to be displayed that is model.
+  - test class that will test the above class & view.
+
+* app is the first component that Angular creates.
+
+* app.component.ts is containing an attribute that is Model in our MVVM architecture.
+
+* A module is a set of components that includes many components.
+
+* A component includes html, css, class & test class.
+
+* app.module.ts contains descriptions & inclusions of your Angular project.
+
+  - It imports:
+	= BrowserModule that allows you to render view on browser.
+	= NgModule that contains which components are included in application.
+	= imports is an array that includes which modules you are importing.
+	= providers is an array that contains list of service components.
+	= bootstrap allows you to mention start-up component of your application.
+
+* @Component & @NgModule are decorators that describe given class.
+
+===================== x ======================== x =============== x ======================
+
+28 May 2021:
+============
+
+JWT: - JSON Web Tokens
+       JavaScript Object Notation.
+
+How it works & What is it?
+--------------------------
+
+* JWT is used to authenticate a user based on credentials & server sends back a token.
+
+* Client sends credentials to Server.
+
+* Server verifies credentials & sends back a identifier token to client. This is unique for
+  every separate user.
+
+* When client sends next request, it carries the JWT token with it. Server again verifies,
+  this time with previous JWT token. If not carried, server blocks it. If invalid token,
+  server blocks it.
+
+* JWT token makes use of cryptic algorithm like SHA & Base64 bit system. All alphabets are
+  made of 8 bits i.e. 2 raised to 8 is 256. Base64 makes use of only 6 bits. 2 raised to 6
+  is 64.
+
+-------------------------- x -------------------------- x -------------------------- x -----
+
+What is main benefit of JWT tokens?
+-----------------------------------
+
+* HTTP is a stateless protocol. It doesn't store anything on disk, at server side, like FTP
+  i.e. File Transfer Protocol.
+
+* A session is collection of many request-response cycles.
+
+* In HTTP, when one request-response cycle ends, everything is lost. So, credentials & all
+  other things are lost.
+
+* In JWT token system, session objects are not required. JWT tokens need not be stored at
+  server side. As there are many users, server side needs to create one object per user per
+  session, there will be many objects for many users, at server side. This is avoided in JWT
+  token system. Every time token comes to server side it will decrypt according to certain
+  logic & verify, so no need to store tokens/ credentials.
+
+-------------------------- x -------------------------- x -------------------------- x -----
+
+What is a Filter?
+=================
+
+* Filter is similar to water filters.
+
+* Intercepting Filter ==> A design pattern that says, there should be a separate object
+			  before controller in MVC that verfies, converts data coming from
+			  outside into controller understandable form & similarly sends it
+			  into client understandable form. Filters are used for 
+			  authentication, encryption/decryption, compression/decompression
+			  etc.
+
+* CORS ==> Cross Origin Resource Sharing
+
+* A CorsFilter will tell Spring Boot application to allow request from specified domains.
+  It is filtering incoming traffic.
+
+* JwtFilter will decrypt the incoming JWT code for verification.
+
+* Whenever you use APPLICATION_FORM_URLENCODED_VALUE, you should never use @RequestBody, in
+  Spring Boot application, as it will not be able to parse it correctly.
