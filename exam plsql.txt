@@ -1,0 +1,67 @@
+Please view this document in Font Size 12, Lucida Console, Regular, for better viewing.
+
+Assumptions:
+
+	1) Customer table having following columns:
+
+	custId INT
+	name VARCHAR2(100)
+	street VARCHAR2(100)
+	area VARCHAR2(100)
+	city VARCHAR2(100)
+	state VARCHAR2(100)
+
+	2) Employee table
+
+		empid INT PRIMARY KEY,
+		name VARCHAR2(100),
+		basic FLOAT
+		da FLOAT
+		hra FLOAT
+		pf FLOAT
+		loan_emi FLOAT
+		salary FLOAT
+
+Please do NOT create tables. It is assumed that it is created.
+
+
+1) Create a package specification named exam_task.
+
+2) Create below code in your PC & perform the task as specified in comments:
+
+CREATE OR REPLACE PACKAGE exam_task
+IS
+   TYPE cust_details IS REF CURSOR;
+   PROCEDURE custRef(city IN VARCHAR, cust_cursor OUT cust_details);
+   PROCEDURE getCustDetails;
+END;
+
+CREATE OR REPLACE PACKAGE BODY exam_task
+IS
+	PROCEDURE custRef(city IN VARCHAR, cust_cursor OUT cust_details)
+	IS
+	    BEGIN
+/* A command that opens a cursor for showing customers that live in given city as in
+   parameter.
+*/
+	END empRef;
+
+	PROCEDURE getCustDetails
+	IS
+/* Required variable declaration for receiving customer details & a cursor */
+
+	BEGIN
+		/* Call to custRef to receive records of customers */
+
+       /* Loop that will print records of customers */
+
+-- Close given cursor
+	END getcustDetails;
+END exam_task;
+
+3) Create a Trigger that does not insert an employee record if deduction is more than 5000.
+   Exception handling is expected. If deduction less than 5000, allow to insert record.
+
+	deduction = pf + loan_emi
+	allowance = basic + da + hra
+	salary = allowance - deduction.
