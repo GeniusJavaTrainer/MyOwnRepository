@@ -1,0 +1,356 @@
+CREATE TABLE course_info
+(course_code VARCHAR(10) PRIMARY KEY,
+course_name VARCHAR(20),
+course_description VARCHAR(250),
+course_start_date DATE,
+course_duration INT,
+no_of_participants INT,
+course_type CHAR(3)
+);
+
+INSERT INTO course_info VALUES('1','DAC','Diploma in Advance Computing is a course bridging gap between college student and Industry Professional', '14-Jul-2014',180,60, 'PGD');
+
+INSERT INTO course_info VALUES('2','DST','Diploma in Software Technology is a course that includes C, C++, CoreJava, Advance Java, Spring','27-Jul-2014',90,40,'PGD');
+
+INSERT INTO course_info VALUES('3','WSF','Workshop in Spring Framework is a 3 day workshop only for hardcore professionals',
+'10-Jul-2014',3,15,'CC');
+
+INSERT INTO course_info VALUES('4','ODW','One day Workshop in dissecting Apache Tomcat 8, only for hardcore professionals',
+'10-Jul-2014',1,10,'CC');
+---------------------------------------------------------------
+do $$
+   <<first_block>>
+DECLARE
+       v_course_day INT;
+       v_course_type VARCHAR;
+BEGIN
+        SELECT course_duration INTO v_course_day FROM course_info WHERE course_code='2';
+
+        IF v_course_day > 10 THEN
+            v_course_type = 'Long Term Course';
+        END IF;
+        raise notice '%', v_course_type;
+END first_block $$;
+===============================================================
+
+debug
+ log
+ notice
+ info
+ warning
+ exception
+
+========================================================================================================
+
+do $$
+   <<first_block>>
+DECLARE
+       v_course_day course_info.course_duration%TYPE;
+       v_course_type VARCHAR;
+BEGIN
+        SELECT course_duration INTO v_course_day FROM course_info WHERE course_code='2';
+
+        IF v_course_day > 10 THEN
+            v_course_type = 'Long Term Course';
+        END IF;
+        raise notice '%', v_course_type;
+END first_block $$;
+---------------------------------------------------------------
+do $$
+   <<first_block>>
+DECLARE
+       course_day course_info.course_duration%TYPE;
+       course_type VARCHAR(20);
+BEGIN
+        SELECT course_duration INTO course_day FROM course_info WHERE course_code='3';
+
+        IF course_day > 50 THEN
+            course_type = 'Long Term Course';
+        ELSIF course_day < 50 AND course_day > 30 THEN
+            course_type = 'Mid Term Course';
+        ELSE
+            course_type = 'Short Term Course';
+        END IF;
+        raise notice '%',course_type;
+END first_block $$;
+---------------------------------------------------------------
+do $$
+   <<first_block>>
+DECLARE
+       course_day course_info.course_duration%TYPE;
+       course_type VARCHAR(20);
+BEGIN
+        SELECT course_duration INTO course_day FROM course_info WHERE course_code='4';
+
+        CASE
+	    WHEN course_day = 1 THEN
+		course_type = 'One day Course';
+	    WHEN course_day > 50 THEN
+		course_type = 'Long Term Course';
+	    WHEN course_day <= 50 AND course_day >= 30 THEN
+		course_type = 'Mid Term Course';
+            ELSE
+		course_type = 'Short Term Course';
+        END CASE;
+        raise notice '%',course_type;
+END first_block $$;
+---------------------------------------------------------------
+do $$
+   <<first_block>>
+DECLARE
+       num INT;
+BEGIN
+       num = 1;
+
+       LOOP
+            EXIT WHEN num > 10;
+            raise info '%',num;
+            num = num + 1;
+       END LOOP;
+END first_block $$;
+---------------------------------------------------------------
+do
+$$
+declare
+   counter int = 0;
+begin
+  
+  loop
+     counter = counter + 1;
+	 -- exit the loop if counter > 10
+	 exit when counter > 10;
+	 -- skip the current iteration if counter is an even number
+	 continue when mod(counter,2) = 0;
+	 -- print out the counter
+	 raise notice '%', counter;
+  end loop;
+end;
+$$
+-----------------------------------------------------------------
+DECLARE
+       num NUMBER;
+BEGIN
+       num := 1;
+
+       FOR num IN 1..10 LOOP
+            DBMS_OUTPUT.PUT_LINE(num);
+       END LOOP;
+END;
+---------------------------------------------------------------
+do $$
+   <<first_block>>
+DECLARE
+       num INT;
+BEGIN
+       num = 1;
+
+       WHILE num <= 10 
+       LOOP
+            raise info '%',num;
+            num = num + 1;
+       END LOOP;
+END first_block $$;
+---------------------------------------------------------------
+do $$ 
+<<outer_block>>
+declare
+  counter integer := 0;
+begin
+   counter := counter + 1;
+   raise notice 'The current value of the counter is %', counter;
+
+   declare
+       counter integer := 0;
+   begin
+       counter := counter + 10;
+       raise notice 'Counter in the subblock is %', counter;
+       raise notice 'Counter in the outer block is %', outer_block.counter;
+   end;
+
+   raise notice 'Counter in the outer block is %', counter;
+   
+end outer_block $$;
+
+----------------------------------------------------------------
+
+CURSOR
+
+do $$
+declare 
+	 rec_course record;
+	 cur_course cursor
+		 for select course_name, course_description
+		 from course_info;
+begin
+   -- open the cursor
+   open cur_course;
+	
+   loop
+    -- fetch row into the film
+      fetch cur_course into rec_course;
+    -- exit when no more row to fetch
+      exit when not found;
+
+    -- build the output
+      
+         raise info '% %', rec_course.course_name, rec_course.course_description;
+      
+   end loop;
+  
+   -- close the cursor
+   close cur_course;
+
+end $$;
+
+-------------------------------------------------------------------------------------------------------
+
+PROCEDURE
+
+drop table if exists accounts;
+
+create table accounts (
+    id int generated by default as identity,
+    name varchar(100) not null,
+    balance dec(15,2) not null,
+    primary key(id)
+);
+
+insert into accounts(name,balance)
+values('Bob',10000);
+
+insert into accounts(name,balance)
+values('Alice',10000);
+
+select * from accounts;
+
+create or replace procedure transfer(
+   sender int,
+   receiver int, 
+   amount dec
+)
+language plpgsql    
+as $$
+begin
+    -- subtracting the amount from the sender's account 
+    update accounts 
+    set balance = balance - amount 
+    where id = sender;
+
+    -- adding the amount to the receiver's account
+    update accounts 
+    set balance = balance + amount 
+    where id = receiver;
+
+    commit;
+end;$$
+
+------------------------------------------------------------------------------------------------------
+
+create or replace procedure proc_cursor()
+
+language plpgsql    
+as $$
+declare
+rec_course record;
+	 cur_course cursor
+		 for select course_name, course_description
+		 from course_info;
+begin
+   -- open the cursor
+   open cur_course;
+	
+   loop
+    -- fetch row into the film
+      fetch cur_course into rec_course;
+    -- exit when no more row to fetch
+      exit when not found;
+
+    -- build the output
+      
+         raise info '% %', rec_course.course_name, rec_course.course_description;
+      
+   end loop;
+  
+   -- close the cursor
+   close cur_course;
+end;$$
+-------------------------------------------------------------------------------------------------
+
+Function
+
+create or replace function get_course(duration int)
+returns varchar
+language plpgsql
+as
+$$
+declare
+   description varchar;
+begin
+   select course_description 
+   into description
+   from course_info
+   where course_duration = duration;
+   
+   return description;
+end;
+$$;
+
+SELECT get_course(90);
+
+========================================================================================================
+
+CREATE OR replace PROCEDURE test_proc(a OUT INT)
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    result INT;
+BEGIN
+    result:= 24;
+    a:=result;
+END $$;
+
+
+do $$
+DECLARE
+	result int;
+BEGIN
+	CALL test_proc(result);
+	RAISE NOTICE '%', result;
+end $$;
+
+=========================================================================================================
+
+EXCEPTION HANDLING
+
+do $$
+   <<first_block>>
+DECLARE
+       rec record;
+BEGIN
+        SELECT * INTO STRICT rec FROM course_info WHERE course_duration > 1;
+		
+		raise info '%',rec.course_type;
+EXCEPTION
+	WHEN no_data_found THEN
+		raise exception 'There is no such record';
+	WHEN too_many_rows THEN
+		raise exception 'More than one record found';
+END first_block $$;
+
+--------------------------------------------------------------------------------------------------------
+
+do $$
+   <<first_block>>
+DECLARE
+       rec record;
+BEGIN
+        SELECT * INTO STRICT rec FROM course_info WHERE course_duration > 1;
+		
+		raise info '%',rec.course_type;
+EXCEPTION
+	WHEN sqlstate 'P0002' THEN
+		raise exception 'There is no such record';
+	WHEN sqlstate 'P0003' THEN
+		raise exception 'More than one record found';
+END first_block $$;
