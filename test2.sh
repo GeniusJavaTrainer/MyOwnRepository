@@ -1,0 +1,2 @@
+read MYNAME
+echo $MYNAME
