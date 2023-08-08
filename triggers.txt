@@ -1,0 +1,12 @@
+CREATE OR REPLACE TRIGGER trigRowDelete
+AFTER DELETE ON employees
+FOR EACH ROW
+DECLARE
+   m_username VARCHAR(20);
+BEGIN
+	SELECT USER INTO m_username FROM DUAL;
+	INSERT INTO employees_audit
+	VALUES(:OLD.employee_id, :OLD.first_name, OLD.last_name, SYSDATE, m_username);
+END;
+
+ALTER TABLE employees_audit ADD (dateOfChange DATE, username VARCHAR(20))

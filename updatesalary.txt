@@ -1,0 +1,39 @@
+CREATE OR REPLACE PROCEDURE updateSalary(p_empId IN NUMBER, p_amount IN OUT NUMBER)
+IS
+BEGIN
+       UPDATE emp SET salary = salary + (salary * p_amount/100) WHERE id=p_empId;
+       SELECT salary INTO p_amount FROM emp WHERE id=p_empId;
+END;
+
+CREATE OR REPLACE PROCEDURE INSERTIT(p_empId IN NUMBER, p_name IN VARCHAR, p_salary IN FLOAT)
+IS
+BEGIN
+       INSERT INTO employee VALUES(p_empid, p_name, p_salary);
+END;
+
+CREATE OR REPLACE PROCEDURE getsalary(p_empId IN NUMBER, p_salary OUT FLOAT)
+IS
+BEGIN
+       SELECT salary INTO p_salary FROM employee WHERE empid = p_empid;
+END;
+
+CREATE OR REPLACE PROCEDURE updatesalary(p_empId IN NUMBER, p_salary IN OUT FLOAT)
+IS
+BEGIN
+	UPDATE employee SET salary = salary + p_salary WHERE empid = p_empid;
+       SELECT salary INTO p_salary FROM employee WHERE empid = p_empid;
+END;
+
+DECLARE
+         v_salary NUMBER;
+BEGIN
+         getsalary(2,v_salary);
+         DBMS_OUTPUT.PUT_LINE('Salary is: ' || v_salary);
+END;
+
+DECLARE
+         v_salary NUMBER := 5000;
+BEGIN
+         updatesalary(2,v_salary);
+         DBMS_OUTPUT.PUT_LINE('Salary is: ' || v_salary);
+END;

@@ -1,0 +1,3 @@
+SELECT text FROM user_source WHERE type='PROCEDURE' AND name='INSERTIT' ORDER BY LINE;
+
+SELECT object_name FROM user_objects WHERE object_type='PROCEDURE' AND object_name='INSERTIT';
