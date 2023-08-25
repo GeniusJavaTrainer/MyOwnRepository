@@ -1,0 +1,25 @@
+https://github.com/sohamkamani/java-kafka-example
+
+https://www.sohamkamani.com/install-and-run-kafka-locally/#google_vignette
+
+https://stackoverflow.com/questions/25037263/apache-kafka-error-on-windows-couldnot-find-or-load-main-class-quorumpeermain
+
+zookeeper-server-start.bat ..\..\config\zookeeper.properties
+
+kafka-server-start.bat ..\..\config\server.properties
+
+kafka-server-start.bat ..\..\config\server1.properties
+
+kafka-server-start.bat ..\..\config\server2.properties
+
+kafka-server-start.bat ..\..\config\server3.properties
+
+kafka-topics.bat --create --topic my-kafka-topic --bootstrap-server localhost:9092 --partitions 3 --replication-factor 2
+
+kafka-topics.bat --list --bootstrap-server localhost:9092
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic my-kafka-topic1
+
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic my-kafka-topic1 --from-beginning
+
+mvn clean compile assembly:single && java -jar target/java-kafka-example-1.0-SNAPSHOT-jar-with-dependencies.jar
