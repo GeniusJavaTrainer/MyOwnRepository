@@ -1,0 +1,9 @@
+docker tag demo:0.0.1-SNAPSHOT springguides/demo
+
+docker push springguides/demo
+
+kubectl create deployment demo --image=springguides/demo --dry-run=client -o=yaml > deployment.yaml
+
+kubectl create service clusterip demo --tcp=8080:8080 --dry-run=client -o=yaml >> deployment.yaml
+
+kubectl apply -f deployment.yaml
